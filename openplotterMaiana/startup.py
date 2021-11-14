@@ -17,6 +17,7 @@
 
 import time, os, subprocess, sys
 from openplotterSettings import language
+from openplotterSignalkInstaller import connections
 
 class Start(): 
 	def __init__(self, conf, currentLanguage):
@@ -39,12 +40,56 @@ class Check():
 		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-maiana',currentLanguage)
 		
-		self.initialMessage = ''
+		self.initialMessage = _('Checking MAIANA transponder...')
 
 	def check(self):
 		green = '' 
 		black = '' 
 		red = '' 
+
+		#device
+		device = self.conf.get('MAIANA', 'device')
+		if not device:
+			msg = _('There is no MAIANA device defined')
+			if not red: red = msg
+			else: red+= '\n    '+msg
+		else:
+			msg = _('MAIANA device')+': '+device
+			if not green: green = msg
+			else: green+= ' | '+msg
+
+		#access
+		skConnections = connections.Connections('MAIANA')
+		result = skConnections.checkConnection()
+		if result[0] == 'pending' or result[0] == 'error' or result[0] == 'repeat' or result[0] == 'permissions':
+			if not red: red = result[1]
+			else: red+= '\n    '+result[1]
+		if result[0] == 'approved' or result[0] == 'validated':
+			msg = _('Access to Signal K server validated')
+			if not green: green = msg
+			else: green+= ' | '+msg
+
+		#service
+		if device and (result[0] == 'approved' or result[0] == 'validated'):
+			try:
+				subprocess.check_output(['systemctl', 'is-active', 'openplotter-maiana-read']).decode(sys.stdin.encoding)
+				msg = _('OpenPlotter MAIANA service is running')
+				if not green: green = msg
+				else: green+= ' | '+msg
+			except:			
+				msg = _('OpenPlotter MAIANA service is not running')
+				if not red: red = msg
+				else: red+= '\n    '+msg
+		else:
+			try:
+				subprocess.check_output(['systemctl', 'is-active', 'openplotter-maiana-read']).decode(sys.stdin.encoding)
+				msg = _('OpenPlotter MAIANA service is running')
+				if not red: red = msg
+				else: red+= '\n    '+msg
+			except:			
+				msg = _('OpenPlotter MAIANA service is not running')
+				if not green: green = msg
+				else: green+= ' | '+msg
 
 		return {'green': green,'black': black,'red': red}
 

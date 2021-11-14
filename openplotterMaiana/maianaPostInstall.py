@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import os
+import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
 from .version import version
@@ -27,8 +27,24 @@ def main():
 	package = 'openplotter-maiana'
 	language.Language(currentdir, package, currentLanguage)
 
+	print(_('Checking access to Signal K server...'))
+	try:
+		from openplotterSignalkInstaller import connections
+		skConnections = connections.Connections('MAIANA')
+		result = skConnections.checkConnection()
+		if result[1]: print(result[1])
+		else: print(_('DONE'))
+	except Exception as e: print(_('FAILED: ')+str(e))
 
-	
+	print(_('Adding openplotter-maiana-read service...'))
+	try:
+		fo = open('/etc/systemd/system/openplotter-maiana-read.service', "w")
+		fo.write( '[Service]\nExecStart=openplotter-maiana-read\nStandardOutput=syslog\nStandardError=syslog\nUser='+conf2.user+'\nRestart=always\nRestartSec=5\n\n[Install]\nWantedBy=multi-user.target')
+		fo.close()
+		subprocess.call(['systemctl', 'daemon-reload'])
+		print(_('DONE'))
+	except Exception as e: print(_('FAILED: ')+str(e))
+
 	print(_('Setting version...'))
 	try:
 		conf2.set('APPS', 'maiana', version)

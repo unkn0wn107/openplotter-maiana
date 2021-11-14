@@ -2,7 +2,7 @@
 
 # This file is part of Openplotter.
 # Copyright (C) 2021 by Sailoog <https://github.com/openplotter/openplotter-maiana>
-#
+#                     
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 2 of the License, or
@@ -15,31 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import os, subprocess
-from openplotterSettings import conf
-from openplotterSettings import language
+import sys, subprocess
 
-def main():
-	conf2 = conf.Conf()
-	currentdir = os.path.dirname(os.path.abspath(__file__))
-	currentLanguage = conf2.get('GENERAL', 'lang')
-	package = 'openplotter-maiana'
-	language.Language(currentdir, package, currentLanguage)
-
-	print(_('Removing openplotter-maiana-read services...'))
-	try:
+if sys.argv[1]=='openplotter-maiana-read':
+	if sys.argv[2]=='start':
+		subprocess.call(['systemctl', 'enable', 'openplotter-maiana-read'])
+		subprocess.call(['systemctl', 'start', 'openplotter-maiana-read'])
+	if sys.argv[2]=='stop':
 		subprocess.call(['systemctl', 'disable', 'openplotter-maiana-read'])
 		subprocess.call(['systemctl', 'stop', 'openplotter-maiana-read'])
-		subprocess.call(['rm', '-f', '/etc/systemd/system/openplotter-maiana-read.service'])
-		subprocess.call(['systemctl', 'daemon-reload'])
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
-
-	print(_('Removing version...'))
-	try:
-		conf2.set('APPS', 'maiana', '')
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
-
-if __name__ == '__main__':
-	main()
+	if sys.argv[2]=='restart':
+		subprocess.call(['systemctl', 'enable', 'openplotter-maiana-read'])
+		subprocess.call(['systemctl', 'restart', 'openplotter-maiana-read'])

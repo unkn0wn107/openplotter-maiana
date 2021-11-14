@@ -1,3 +1,9 @@
+openplotter-maiana (2.0.0-alpha) buster; urgency=medium
+
+  * Multiple changes
+
+ -- Sailoog <info@sailoog.com>  Sun, 14 Nov 2021 14:14:02 +0100
+
 openplotter-maiana (1.0.0-beta) buster; urgency=medium
 
   * First commit

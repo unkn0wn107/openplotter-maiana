@@ -31,6 +31,6 @@ setup (
 	'Operating System :: POSIX :: Linux',
 	'Programming Language :: Python :: 3'],
 	include_package_data=True,
-	entry_points={'console_scripts': ['openplotter-maiana=openplotterMaiana.openplotterMaiana:main','maianaPostInstall=openplotterMaiana.maianaPostInstall:main','maianaPreUninstall=openplotterMaiana.maianaPreUninstall:main']},
+	entry_points={'console_scripts': ['openplotter-maiana=openplotterMaiana.openplotterMaiana:main','maianaPostInstall=openplotterMaiana.maianaPostInstall:main','maianaPreUninstall=openplotterMaiana.maianaPreUninstall:main','openplotter-maiana-read=openplotterMaiana.openplotterMaianaRead:main']},
 	data_files=[('share/applications', ['openplotterMaiana/data/openplotter-maiana.desktop']),('share/pixmaps', ['openplotterMaiana/data/openplotter-maiana.png']),],
 	)
