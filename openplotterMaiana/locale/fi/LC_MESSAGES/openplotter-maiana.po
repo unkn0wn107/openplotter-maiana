@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: openplotter-maiana\n"
+"Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2021-11-14 14:09+0100\n"
 "PO-Revision-Date: 2021-11-14 20:16+0100\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en\n"
+"Language-Team: Finnish\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,290 +13,295 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Project-ID: 289888\n"
+"X-Crowdin-Language: fi\n"
+"X-Crowdin-File: openplotter-maiana.po\n"
+"X-Crowdin-File-ID: 33\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: data/openplotter-maiana.desktop:3
 msgid "My App"
-msgstr ""
+msgstr "Oma Sovellus"
 
 #: data/openplotter-maiana.desktop:5
 msgid "openplotter-maiana"
-msgstr ""
+msgstr "openplotter-maiana"
 
 #: maianaPostInstall.py:30
 msgid "Checking access to Signal K server..."
-msgstr ""
+msgstr "Tarkistetaan pääsy Signal K serveriin..."
 
 #: maianaPostInstall.py:36 maianaPostInstall.py:45 maianaPostInstall.py:51
 #: maianaPreUninstall.py:35 maianaPreUninstall.py:41
 msgid "DONE"
-msgstr ""
+msgstr "VALMIS"
 
 #: maianaPostInstall.py:37 maianaPostInstall.py:46 maianaPostInstall.py:52
 #: maianaPreUninstall.py:36 maianaPreUninstall.py:42
 msgid "FAILED: "
-msgstr ""
+msgstr "EPÄONNISTUNUT: "
 
 #: maianaPostInstall.py:39
 msgid "Adding openplotter-maiana-read service..."
-msgstr ""
+msgstr "Lisätään openplotter-maiana-read palvelu..."
 
 #: maianaPostInstall.py:48
 msgid "Setting version..."
-msgstr ""
+msgstr "Asetetaan versio..."
 
 #: maianaPreUninstall.py:29
 msgid "Removing openplotter-maiana-read services..."
-msgstr ""
+msgstr "Poistetaan openplotter-can-luku palvelut..."
 
 #: maianaPreUninstall.py:38
 msgid "Removing version..."
-msgstr ""
+msgstr "Poistetaan versio..."
 
 #: openplotterMaiana.py:35
 msgid "MAIANA AIS transponder"
-msgstr ""
+msgstr "MAIANA AIS transponder"
 
 #: openplotterMaiana.py:45
 msgid "Help"
-msgstr ""
+msgstr "Ohje"
 
 #: openplotterMaiana.py:48 openplotterMaiana.py:67
 msgid "Settings"
-msgstr ""
+msgstr "Asetukset"
 
 #: openplotterMaiana.py:51
 msgid "Approve"
-msgstr ""
+msgstr "Hyväksy"
 
 #: openplotterMaiana.py:53
 msgid "Allowed"
-msgstr ""
+msgstr "Sallittu"
 
 #: openplotterMaiana.py:56
 msgid "MAIANA Signal K connection"
-msgstr ""
+msgstr "MAIANA Signal K yhteys"
 
 #: openplotterMaiana.py:60
 msgid "Connections"
-msgstr ""
+msgstr "Yhteydet"
 
 #: openplotterMaiana.py:68
 msgid "Firmware"
-msgstr ""
+msgstr "Laiteohjelmisto"
 
 #: openplotterMaiana.py:136
 msgid "Reading MAIANA device settings..."
-msgstr ""
+msgstr "Luetaan MAIANA laitteen asetuksia..."
 
 #: openplotterMaiana.py:180
 msgid "Select the Signal K connection for the MAIANA device"
-msgstr ""
+msgstr "Valitse Signal K yhteys MAIANA laitteelle"
 
 #: openplotterMaiana.py:200
 msgid "Hardware revision"
-msgstr ""
+msgstr "Laitteiston versio"
 
 #: openplotterMaiana.py:203
 msgid "Firmware revision"
-msgstr ""
+msgstr "Laiteohjelmiston versio"
 
 #: openplotterMaiana.py:206
 msgid "Serial number"
-msgstr ""
+msgstr "Sarjanumero"
 
 #: openplotterMaiana.py:209
 msgid "Type of MCU"
-msgstr ""
+msgstr "MCU:n tyyppi"
 
 #: openplotterMaiana.py:215
 msgid "Transmitter hardware module"
-msgstr ""
+msgstr "Lähettimen laitteistomoduuli"
 
 #: openplotterMaiana.py:220
 msgid "present"
-msgstr ""
+msgstr "läsnä"
 
 #: openplotterMaiana.py:223
 msgid "not present"
-msgstr ""
+msgstr "ei ole läsnä"
 
 #: openplotterMaiana.py:226
 msgid "Hardware TX switch"
-msgstr ""
+msgstr "Laitteiston TX- kytkin"
 
 #: openplotterMaiana.py:231 openplotterMaiana.py:243
 msgid "ON"
-msgstr ""
+msgstr "PÄÄLLÄ"
 
 #: openplotterMaiana.py:234 openplotterMaiana.py:248
 msgid "OFF"
-msgstr ""
+msgstr "POIS PÄÄLTÄ"
 
 #: openplotterMaiana.py:237 openplotterMaiana.py:424
 msgid "Software TX switch"
-msgstr ""
+msgstr "TX kytkin ohjelmisto"
 
 #: openplotterMaiana.py:252
 msgid "Station data"
-msgstr ""
+msgstr "Aseman tiedot"
 
 #: openplotterMaiana.py:257
 msgid "provided"
-msgstr ""
+msgstr "toimitettu"
 
 #: openplotterMaiana.py:260
 msgid "not provided"
-msgstr ""
+msgstr "ei ole toimitettue"
 
 #: openplotterMaiana.py:263
 msgid "Status"
-msgstr ""
+msgstr "Tila"
 
 #: openplotterMaiana.py:268
 msgid "transmitting"
-msgstr ""
+msgstr "lähettäminen"
 
 #: openplotterMaiana.py:271
 msgid "not transmitting"
-msgstr ""
+msgstr "ei lähetä"
 
 #: openplotterMaiana.py:274
 msgid "Channel A latest transmitted message"
-msgstr ""
+msgstr "Kanavan A viimeisin lähetetty viesti"
 
 #: openplotterMaiana.py:280 openplotterMaiana.py:293
 msgid "Type"
-msgstr ""
+msgstr "Tyyppi"
 
 #: openplotterMaiana.py:284 openplotterMaiana.py:296
 msgid "Time"
-msgstr ""
+msgstr "Aika"
 
 #: openplotterMaiana.py:287
 msgid "Channel B latest transmitted message"
-msgstr ""
+msgstr "Kanavan B viimeisin lähetetty viesti"
 
 #: openplotterMaiana.py:299
 msgid "Channel A noise floor"
-msgstr ""
+msgstr "Kanavan A peruskohina"
 
 #: openplotterMaiana.py:304
 msgid "Channel B noise floor"
-msgstr ""
+msgstr "Kanavan B peruskohina"
 
 #: openplotterMaiana.py:331
 msgid "Done"
-msgstr ""
+msgstr "Valmis"
 
 #: openplotterMaiana.py:339
 msgid " Press \"Approve\" and then \"Refresh\"."
-msgstr ""
+msgstr " Paina \"Hyväksy\" ja sitten \"Päivitä \"."
 
 #: openplotterMaiana.py:343
 msgid " Press \"Refresh\"."
-msgstr ""
+msgstr " Paina \"Päivitä\"."
 
 #: openplotterMaiana.py:345
 msgid " Press \"Allowed\"."
-msgstr ""
+msgstr " Paina \"Sallittu\"."
 
 #: openplotterMaiana.py:402
 msgid "MMSI"
-msgstr ""
+msgstr "MMSI"
 
 #: openplotterMaiana.py:404
 msgid "Vessel name"
-msgstr ""
+msgstr "Aluksen nimi"
 
 #: openplotterMaiana.py:406
 msgid "Call sign"
-msgstr ""
+msgstr "Radiokutsu"
 
 #: openplotterMaiana.py:408
 msgid "Vessel type"
-msgstr ""
+msgstr "Aluksen tyyppi"
 
 #: openplotterMaiana.py:410
 msgid "LOA"
-msgstr ""
+msgstr "LOA"
 
 #: openplotterMaiana.py:412
 msgid "Beam"
-msgstr ""
+msgstr "Leveys"
 
 #: openplotterMaiana.py:414
 msgid "Port Offset"
-msgstr ""
+msgstr "Vasen siirros"
 
 #: openplotterMaiana.py:416
 msgid "Bow Offset"
-msgstr ""
+msgstr "Keulasiirros"
 
 #: openplotterMaiana.py:418
 msgid "Units: meters"
-msgstr ""
+msgstr "Yksiköt: metriä"
 
 #: openplotterMaiana.py:421 openplotterMaiana.py:529
 msgid "Refresh"
-msgstr ""
+msgstr "Päivitä"
 
 #: openplotterMaiana.py:427
 msgid "Save station data"
-msgstr ""
+msgstr "Tallenna aseman tiedot"
 
 #: openplotterMaiana.py:468
 msgid "Invalid MMSI"
-msgstr ""
+msgstr "Virheellinen MMSI"
 
 #: openplotterMaiana.py:474
 msgid "Invalid vessel name"
-msgstr ""
+msgstr "Virheellinen aluksen nimi"
 
 #: openplotterMaiana.py:479
 msgid "Invalid call sign"
-msgstr ""
+msgstr "Väärä radiokutsu"
 
 #: openplotterMaiana.py:488
 msgid "Invalid vessel type"
-msgstr ""
+msgstr "Väärä alustyyppi"
 
 #: openplotterMaiana.py:493
 msgid "Invalid LOA"
-msgstr ""
+msgstr "Väärä LOA"
 
 #: openplotterMaiana.py:498
 msgid "Invalid Beam"
-msgstr ""
+msgstr "Väärä leveys"
 
 #: openplotterMaiana.py:503
 msgid "Invalid bow offset"
-msgstr ""
+msgstr "Väärä keulasiirros"
 
 #: openplotterMaiana.py:508
 msgid "Invalid port offset"
-msgstr ""
+msgstr "Väärä vasensiirros"
 
 #: startup.py:43
 msgid "Checking MAIANA transponder..."
-msgstr ""
+msgstr "Tarkistetaan MAIANA-transponder..."
 
 #: startup.py:53
 msgid "There is no MAIANA device defined"
-msgstr ""
+msgstr "MAIANA-laitetta ei ole määritelty"
 
 #: startup.py:57
 msgid "MAIANA device"
-msgstr ""
+msgstr "MAIANA laite"
 
 #: startup.py:68
 msgid "Access to Signal K server validated"
-msgstr ""
+msgstr "Pääsy Signal K palvelimeen vahvistettu"
 
 #: startup.py:76 startup.py:86
 msgid "OpenPlotter MAIANA service is running"
-msgstr ""
+msgstr "OpenPlotter MAIANA palvelu on käynnissä"
 
 #: startup.py:80 startup.py:90
 msgid "OpenPlotter MAIANA service is not running"
-msgstr ""
+msgstr "OpenPlotter MAIANA palvelu ei ole käynnissä"
