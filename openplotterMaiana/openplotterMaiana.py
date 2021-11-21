@@ -134,7 +134,19 @@ class MyFrame(wx.Frame):
 
 	def onRead(self):
 		self.ShowStatusBarYELLOW(_('Reading MAIANA device settings...'))
+		self.mmsi.SetValue('')
+		self.vesselName.SetValue('')
+		self.callSign.SetValue('')
+		self.vesselType.SetValue('')
+		self.LOA.SetValue('')
+		self.beam.SetValue('')
+		self.portOffset.SetValue('')
+		self.bowOffset.SetValue('')
+		self.logger.Clear()
+		self.logger2.Clear()
 		self.device = self.conf.get('MAIANA', 'device')
+		if self.conf.get('MAIANA', 'noiseDetect') == '1': self.toolbar3.ToggleTool(304,True)
+		else: self.toolbar3.ToggleTool(304,False)
 		deviceOld = self.device
 		availableIDs = []
 		selected = ''
@@ -192,25 +204,20 @@ class MyFrame(wx.Frame):
 				data = ujson.loads(resp.content)
 			except: data = {}
 
-			self.logger.Clear()
 			self.logger.BeginFontSize(10)
-			self.logger.WriteText('This feature is still under construction')
-			self.logger.Newline()
-			self.logger.Newline()
 			self.logger.WriteText(_('Hardware revision'))
 			if 'hardwareRevision' in data: self.logger.WriteText(': '+data['hardwareRevision']['value'])
 			self.logger.Newline()
 			self.logger.WriteText(_('Firmware revision'))
 			if 'firmwareRevision' in data: self.logger.WriteText(': '+data['firmwareRevision']['value'])
 			self.logger.Newline()
-			self.logger.WriteText(_('Serial number'))
-			if 'serialNumber' in data: self.logger.WriteText(': '+data['serialNumber']['value'])
-			self.logger.Newline()
 			self.logger.WriteText(_('Type of MCU'))
 			if 'MCUtype' in data: self.logger.WriteText(': '+data['MCUtype']['value'])
 			self.logger.Newline()
-
-			self.logger2.Clear()
+			self.logger.WriteText(_('Serial number'))
+			if 'serialNumber' in data: self.logger.WriteText(': '+data['serialNumber']['value'])
+			self.logger.Newline()
+			
 			self.logger2.BeginFontSize(10)
 			self.logger2.WriteText(_('Transmitter hardware module'))
 			if 'transmission' in data:
@@ -319,15 +326,7 @@ class MyFrame(wx.Frame):
 				if 'beam' in data['station']: self.beam.SetValue(str(data['station']['beam']['value']))
 				if 'bowOffset' in data['station']: self.bowOffset.SetValue(str(data['station']['bowOffset']['value']))
 				if 'portOffset' in data['station']: self.portOffset.SetValue(str(data['station']['portOffset']['value']))
-			else:
-				self.mmsi.SetValue('')
-				self.vesselName.SetValue('')
-				self.callSign.SetValue('')
-				self.vesselType.SetValue('')
-				self.LOA.SetValue('')
-				self.beam.SetValue('')
-				self.portOffset.SetValue('')
-				self.bowOffset.SetValue('')
+
 			self.ShowStatusBarGREEN(_('Done'))
 
 
@@ -424,6 +423,9 @@ class MyFrame(wx.Frame):
 		toolTX = self.toolbar3.AddTool(302, _('Software TX switch'), wx.Bitmap(self.currentdir+"/data/switch-off.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolTX, toolTX)
 		self.toolbar3.AddSeparator()
+		toolNoise = self.toolbar3.AddCheckTool(304, _('Detect noise'), wx.Bitmap(self.currentdir+"/data/notifications.png"))
+		self.Bind(wx.EVT_TOOL, self.OnToolNoise, toolNoise)
+		self.toolbar3.AddSeparator()
 		toolSave = self.toolbar3.AddTool(303, _('Save station data'), wx.Bitmap(self.currentdir+"/data/apply.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolSave, toolSave)
 
@@ -461,6 +463,12 @@ class MyFrame(wx.Frame):
 		vbox.Add(self.toolbar3, 0)
 		vbox.Add(hbox4, 1, wx.ALL | wx.EXPAND, 0)
 		self.settings.SetSizer(vbox)
+
+	def OnToolNoise(self,e):
+		if self.toolbar3.GetToolState(304):
+			self.conf.set('MAIANA', 'noiseDetect', '1')
+		else:
+			self.conf.set('MAIANA', 'noiseDetect', '0')
 
 	def OnToolSave(self, event):
 		mmsi = self.mmsi.GetValue()

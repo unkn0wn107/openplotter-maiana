@@ -15,16 +15,23 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import socket, time, ssl, json
+import os, socket, time, ssl, json, datetime
 from openplotterSettings import conf
 from openplotterSettings import platform
+from openplotterSettings import language
 from websocket import create_connection
 
 def main():
 	platform2 = platform.Platform()
 	conf2 = conf.Conf()
+	currentdir = os.path.dirname(os.path.abspath(__file__))
+	currentLanguage = conf2.get('GENERAL', 'lang')
+	package = 'openplotter-maiana'
+	language.Language(currentdir, package, currentLanguage)
 	token = conf2.get('MAIANA', 'token')
 	device = conf2.get('MAIANA', 'device')
+	if conf2.get('GENERAL', 'debug') == 'yes': debug = True
+	else: debug = False
 	if token and device:
 		ws = False
 		sock = False
@@ -56,16 +63,27 @@ def main():
 								data3 = data2.split('*')
 								data3 = data3[0].split(',')
 								#$PAINF,A,0x20*5B
-								if data3[0] == '$PAINF': 
-									try: SKdata.update({"MAIANA.channel"+data3[1]+".noiseFloor":int(data3[2],16)})
+								if data3[0] == '$PAINF':
+									try: 
+										noiseValue = int(data3[2],16)
+										SKdata.update({"MAIANA.channel"+data3[1]+".noiseFloor":noiseValue})
+										if conf2.get('MAIANA', 'noiseDetect') == '1':
+											if noiseValue > 64:
+												now = datetime.datetime.now()
+												now = now.strftime("%Y-%m-%dT%H:%M:%fZ")
+												SKdata.update({"notifications.MAIANA.channel"+data3[1]+".noiseFloor":{"message":_("There may be electromagnetic interference near the MAIANA AIS antenna"),"state":"alert","method": ["visual", "sound"],"timestamp":now}})
+											else:
+												SKdata.update({"notifications.MAIANA.channel"+data3[1]+".noiseFloor":None})
 									except: pass
 								#$PAITX,A,18*1C
 								elif data3[0] == '$PAITX': 
 									SKdata.update({"MAIANA.channel"+data3[1]+".transmittedMessageType":data3[2]})
-								#$PAISYS,11.0.0,3.1.0,00010*2E
-								elif data3[0] == '$PAISYS': 
-									try: SKdata.update({"MAIANA.hardwareRevision":data3[1],"MAIANA.firmwareRevision":data3[2],"MAIANA.serialNumber":data3[3],"MAIANA.MCUtype":data3[4]})
-									except: SKdata.update({"MAIANA.hardwareRevision":data3[1],"MAIANA.firmwareRevision":data3[2],"MAIANA.serialNumber":data3[3],"MAIANA.MCUtype":''})
+								#$PAISYS,11.3.0,4.0.0,,STM32L422,1,1*05
+								elif data3[0] == '$PAISYS':
+									try: SKdata.update({"MAIANA.hardwareRevision":data3[1],"MAIANA.firmwareRevision":data3[2],"MAIANA.serialNumber":data3[3],"MAIANA.MCUtype":data3[4],"MAIANA.breakoutGeneration":data3[5],"MAIANA.bootloader":data3[6]})
+									except: 
+										try: SKdata.update({"MAIANA.hardwareRevision":data3[1],"MAIANA.firmwareRevision":data3[2],"MAIANA.serialNumber":data3[3],"MAIANA.MCUtype":data3[4],"MAIANA.breakoutGeneration":'',"MAIANA.bootloader":''})
+										except: SKdata.update({"MAIANA.hardwareRevision":data3[1],"MAIANA.firmwareRevision":data3[2],"MAIANA.serialNumber":data3[3],"MAIANA.MCUtype":'',"MAIANA.breakoutGeneration":'',"MAIANA.bootloader":''})
 								#$PAISTN,987654321,NAUT,,37,0,0,0,0*2A
 								elif data3[0] == '$PAISTN':
 									try:
@@ -83,7 +101,8 @@ def main():
 									SignalK = {"updates":[{"$source":"OpenPlotter.maiana","values":keys}]}
 									SignalK = json.dumps(SignalK) 
 									ws.send(SignalK+'\r\n')
-			except: 
+			except Exception as e: 
+				if debug: print(str(e))
 				if ws: ws.close()
 				if sock: sock.close()
 				time.sleep(5)
