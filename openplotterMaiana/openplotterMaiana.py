@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import wx, os, webbrowser, subprocess, time, ujson, serial, requests, re
+import wx, os, webbrowser, subprocess, time, datetime, ujson, serial, requests, re
 import wx.richtext as rt
 from openplotterSettings import conf
 from openplotterSettings import language
@@ -31,6 +31,8 @@ class MyFrame(wx.Frame):
 		self.currentdir = os.path.dirname(os.path.abspath(__file__))
 		self.currentLanguage = self.conf.get('GENERAL', 'lang')
 		self.language = language.Language(self.currentdir,'openplotter-maiana',self.currentLanguage)
+		if self.conf.get('GENERAL', 'debug') == 'yes': self.debug = True
+		else: self.debug = False
 
 		wx.Frame.__init__(self, None, title=_('MAIANA AIS transponder')+' '+version, size=(800,444))
 		self.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
@@ -192,12 +194,12 @@ class MyFrame(wx.Frame):
 			self.ShowStatusBarRED(_('Select the Signal K connection for the MAIANA device'))
 
 		if self.device:
+			self.toolbar3.EnableTool(302,True)
+			self.toolbar3.EnableTool(303,True)
 			ser = serial.Serial(self.device, 38400)
 			ser.write('sys?\r\n'.encode("utf-8"))
 			ser.write('station?\r\n'.encode("utf-8"))
 			ser.write('tx?\r\n'.encode("utf-8"))
-			self.toolbar3.EnableTool(302,True)
-			self.toolbar3.EnableTool(303,True)
 			time.sleep(0.5)
 			resp = requests.get(self.platform.http+'localhost:'+self.platform.skPort+'/signalk/v1/api/vessels/self/MAIANA/', verify=False)
 			try:
@@ -327,8 +329,16 @@ class MyFrame(wx.Frame):
 				if 'bowOffset' in data['station']: self.bowOffset.SetValue(str(data['station']['bowOffset']['value']))
 				if 'portOffset' in data['station']: self.portOffset.SetValue(str(data['station']['portOffset']['value']))
 
-			self.ShowStatusBarGREEN(_('Done'))
-
+			if 'hardwareRevision' in data:
+				try:
+					ts = datetime.datetime.utcnow().timestamp()
+					timestamp = data['hardwareRevision']['timestamp']
+					ts2 = time.mktime(datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%fZ").timetuple())
+					if ts - ts2 > 3: self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
+					else: self.ShowStatusBarGREEN(_('Done'))
+				except Exception as e:
+					if self.debug: print(str(e))
+			else: self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
 
 		self.toolbar1.EnableTool(105,False)
 		skConnections = connections.Connections('MAIANA')
