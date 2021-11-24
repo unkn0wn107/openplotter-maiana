@@ -147,8 +147,11 @@ class MyFrame(wx.Frame):
 		self.logger.Clear()
 		self.logger2.Clear()
 		self.device = self.conf.get('MAIANA', 'device')
+		self.toolbar2.EnableTool(202,False)
+		self.toolbar3.EnableTool(302,False)
+		self.toolbar3.EnableTool(303,False)
+		self.toolbar3.ToggleTool(304,False)
 		if self.conf.get('MAIANA', 'noiseDetect') == '1': self.toolbar3.ToggleTool(304,True)
-		else: self.toolbar3.ToggleTool(304,False)
 		deviceOld = self.device
 		availableIDs = []
 		selected = ''
@@ -189,13 +192,9 @@ class MyFrame(wx.Frame):
 			self.device = ''
 			self.conf.set('MAIANA', 'device', self.device)
 			self.SKconn.SetValue(self.connInit)
-			self.toolbar3.EnableTool(302,False)
-			self.toolbar3.EnableTool(303,False)
 			self.ShowStatusBarRED(_('Select the Signal K connection for the MAIANA device'))
 
 		if self.device:
-			self.toolbar3.EnableTool(302,True)
-			self.toolbar3.EnableTool(303,True)
 			ser = serial.Serial(self.device, 38400)
 			ser.write('sys?\r\n'.encode("utf-8"))
 			ser.write('station?\r\n'.encode("utf-8"))
@@ -205,6 +204,46 @@ class MyFrame(wx.Frame):
 				resp = requests.get(self.platform.http+'localhost:'+self.platform.skPort+'/signalk/v1/api/vessels/self/MAIANA/', verify=False)
 				data = ujson.loads(resp.content)
 			except: data = {}
+
+			if 'hardwareRevision' in data:
+				try:
+					ts = datetime.datetime.utcnow().timestamp()
+					timestamp = data['hardwareRevision']['timestamp']
+					ts2 = time.mktime(datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%fZ").timetuple())
+					if ts - ts2 > 3: 
+						self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
+						return
+					hardwareRevision = data['hardwareRevision']['value']
+					hardwareRevision = hardwareRevision.split('.')
+					if int(hardwareRevision[0]) < 11:
+						self.ShowStatusBarRED(_('The hardware version of your MAIANA device is too old'))
+						return
+					if int(hardwareRevision[0]) == 11 and int(hardwareRevision[1]) < 3:
+						self.ShowStatusBarRED(_('The hardware version of your MAIANA device is too old'))
+						return
+					firmwareRevision = data['firmwareRevision']['value']
+					firmwareRevision = firmwareRevision.split('.')
+					if int(firmwareRevision[0]) < 3:
+						self.ShowStatusBarRED(_('The firmware version of your MAIANA device is too old'))
+						return
+					if int(firmwareRevision[0]) == 3 and int(firmwareRevision[1]) < 3:
+						self.ShowStatusBarRED(_('The firmware version of your MAIANA device is too old'))
+						return
+					if int(firmwareRevision[0]) == 3 and int(firmwareRevision[1]) == 3 and int(firmwareRevision[2]) < 1:
+						self.ShowStatusBarRED(_('The firmware version of your MAIANA device is too old'))
+						return
+					self.toolbar3.EnableTool(302,True)
+					self.toolbar3.EnableTool(303,True)
+					if int(firmwareRevision[0]) >= 4: 
+						self.toolbar2.EnableTool(202,True)
+				except Exception as e:
+					if self.debug: print(str(e))
+					self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
+					return
+			else: 
+				self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
+				return
+			self.ShowStatusBarGREEN(_('Done'))
 
 			self.logger.BeginFontSize(10)
 			self.logger.WriteText(_('Hardware revision'))
@@ -328,17 +367,6 @@ class MyFrame(wx.Frame):
 				if 'beam' in data['station']: self.beam.SetValue(str(data['station']['beam']['value']))
 				if 'bowOffset' in data['station']: self.bowOffset.SetValue(str(data['station']['bowOffset']['value']))
 				if 'portOffset' in data['station']: self.portOffset.SetValue(str(data['station']['portOffset']['value']))
-
-			if 'hardwareRevision' in data:
-				try:
-					ts = datetime.datetime.utcnow().timestamp()
-					timestamp = data['hardwareRevision']['timestamp']
-					ts2 = time.mktime(datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%fZ").timetuple())
-					if ts - ts2 > 3: self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
-					else: self.ShowStatusBarGREEN(_('Done'))
-				except Exception as e:
-					if self.debug: print(str(e))
-			else: self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
 
 		self.toolbar1.EnableTool(105,False)
 		skConnections = connections.Connections('MAIANA')
