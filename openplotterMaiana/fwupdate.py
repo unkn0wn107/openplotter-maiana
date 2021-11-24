@@ -67,7 +67,7 @@ def startSK():
 if __name__ == '__main__':
     try: 
         if len(sys.argv) < 3:
-            print(_("Usage: {0} port imagefile".format(sys.argv[0])))
+            print(_("Usage:")+" {0} port imagefile".format(sys.argv[0]))
             sys.exit(1)
 
         subprocess.call(['systemctl', 'stop', 'signalk.service'])
@@ -88,7 +88,7 @@ if __name__ == '__main__':
         try:
             file = open(filename, "rb")
         except:
-            print(_("Unable to open file")+"{0}".format(filename))
+            print(_("Unable to open file")+" {0}".format(filename))
             startSK()
             sys.exit(2)
 
