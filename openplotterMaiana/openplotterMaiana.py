@@ -201,8 +201,8 @@ class MyFrame(wx.Frame):
 			ser.write('station?\r\n'.encode("utf-8"))
 			ser.write('tx?\r\n'.encode("utf-8"))
 			time.sleep(0.5)
-			resp = requests.get(self.platform.http+'localhost:'+self.platform.skPort+'/signalk/v1/api/vessels/self/MAIANA/', verify=False)
 			try:
+				resp = requests.get(self.platform.http+'localhost:'+self.platform.skPort+'/signalk/v1/api/vessels/self/MAIANA/', verify=False)
 				data = ujson.loads(resp.content)
 			except: data = {}
 
@@ -546,7 +546,9 @@ class MyFrame(wx.Frame):
 		self.toolbar2 = wx.ToolBar(self.firmware, style=wx.TB_TEXT)
 		toolRefresh = self.toolbar2.AddTool(201, _('Refresh'), wx.Bitmap(self.currentdir+"/data/refresh.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolRefresh, toolRefresh)
-
+		self.toolbar2.AddSeparator()
+		toolFile= self.toolbar2.AddTool(202, _('Update firmware'), wx.Bitmap(self.currentdir+"/data/file.png"))
+		self.Bind(wx.EVT_TOOL, self.OnToolFile, toolFile)
 		self.logger = rt.RichTextCtrl(self.firmware, style=wx.TE_MULTILINE|wx.TE_READONLY|wx.TE_DONTWRAP|wx.LC_SORT_ASCENDING)
 		self.logger.SetMargins((10,10))
 
@@ -555,6 +557,32 @@ class MyFrame(wx.Frame):
 		vbox.Add(self.logger, 1, wx.EXPAND, 0)
 
 		self.firmware.SetSizer(vbox)
+
+	def OnToolFile(self,e):
+		file_path = False
+		dlg = wx.FileDialog(self, message=_('Choose a file'), defaultDir='~', defaultFile='', wildcard=_('bin files') + ' (*.bin)|*.bin|' + _('All files') + ' (*.*)|*.*', style=wx.FD_OPEN | wx.FD_CHANGE_DIR)
+		if dlg.ShowModal() == wx.ID_OK:
+			file_path = dlg.GetPath()
+		dlg.Destroy()
+		if file_path:
+			dlg = wx.MessageDialog(None, _(
+				'Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n\nDo you want to go ahead?'),
+				_('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+			if dlg.ShowModal() == wx.ID_YES:
+				self.logger.Clear()
+				self.logger.WriteText(_("Stopping Signal K server"))
+				self.logger.Newline()
+				command = self.platform.admin+' python3 '+self.currentdir+'/fwupdate.py '+self.device+' '+file_path
+				popen = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
+				for line in popen.stdout:
+					if not 'Warning' in line and not 'WARNING' in line:
+						self.logger.WriteText(line)
+						self.ShowStatusBarYELLOW(_('Updating firmware, please wait... ')+line)
+						self.logger.ShowPosition(self.logger.GetLastPosition())
+				self.logger.WriteText(_("Starting Signal K server"))
+				self.SetStatusText('')
+			dlg.Destroy()
+			
 
 ################################################################################
 
