@@ -26,7 +26,7 @@ def main():
 	package = 'openplotter-maiana'
 	language.Language(currentdir, package, currentLanguage)
 
-	print(_('Removing openplotter-maiana-read services...'))
+	print(_('Removing openplotter-maiana-read service...'))
 	try:
 		subprocess.call(['systemctl', 'disable', 'openplotter-maiana-read'])
 		subprocess.call(['systemctl', 'stop', 'openplotter-maiana-read'])

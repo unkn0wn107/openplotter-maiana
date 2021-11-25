@@ -147,6 +147,7 @@ class MyFrame(wx.Frame):
 		self.logger.Clear()
 		self.logger2.Clear()
 		self.device = self.conf.get('MAIANA', 'device')
+		self.toolbar1.EnableTool(105,False)
 		self.toolbar2.EnableTool(202,False)
 		self.toolbar3.EnableTool(302,False)
 		self.toolbar3.EnableTool(303,False)
@@ -156,6 +157,25 @@ class MyFrame(wx.Frame):
 		availableIDs = []
 		selected = ''
 		self.tx = False
+
+		skConnections = connections.Connections('MAIANA')
+		result = skConnections.checkConnection()
+		if result[0] == 'pending':
+			self.toolbar1.EnableTool(105,True)
+			self.ShowStatusBarYELLOW(result[1]+_(' Press "Approve" and then "Refresh".'))
+			return
+		elif result[0] == 'error':
+			self.ShowStatusBarRED(result[1])
+			return
+		elif result[0] == 'repeat':
+			self.ShowStatusBarYELLOW(result[1]+_(' Press "Refresh".'))
+			return
+		elif result[0] == 'permissions':
+			self.ShowStatusBarYELLOW(result[1]+_(' Press "Allowed".'))
+			return
+		elif result[0] == 'approved':
+			self.ShowStatusBarGREEN(result[1])
+
 		try:
 			setting_file = self.platform.skDir+'/settings.json'
 			with open(setting_file) as data_file:
@@ -367,21 +387,6 @@ class MyFrame(wx.Frame):
 				if 'beam' in data['station']: self.beam.SetValue(str(data['station']['beam']['value']))
 				if 'bowOffset' in data['station']: self.bowOffset.SetValue(str(data['station']['bowOffset']['value']))
 				if 'portOffset' in data['station']: self.portOffset.SetValue(str(data['station']['portOffset']['value']))
-
-		self.toolbar1.EnableTool(105,False)
-		skConnections = connections.Connections('MAIANA')
-		result = skConnections.checkConnection()
-		if result[0] == 'pending':
-			self.toolbar1.EnableTool(105,True)
-			self.ShowStatusBarYELLOW(result[1]+_(' Press "Approve" and then "Refresh".'))
-		elif result[0] == 'error':
-			self.ShowStatusBarRED(result[1])
-		elif result[0] == 'repeat':
-			self.ShowStatusBarYELLOW(result[1]+_(' Press "Refresh".'))
-		elif result[0] == 'permissions':
-			self.ShowStatusBarYELLOW(result[1]+_(' Press "Allowed".'))
-		elif result[0] == 'approved':
-			self.ShowStatusBarGREEN(result[1])
 
 		if deviceOld != self.device:
 			if self.device:
