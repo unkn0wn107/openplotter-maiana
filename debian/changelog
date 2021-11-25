@@ -1,4 +1,4 @@
-openplotter-maiana (2.1.0-beta) bionic; urgency=medium
+openplotter-maiana (2.1.1-beta) bionic; urgency=medium
 
   * Add noise detection
   * Detect bad connections
