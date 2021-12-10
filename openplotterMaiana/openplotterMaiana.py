@@ -112,7 +112,7 @@ class MyFrame(wx.Frame):
 		except:pass
 
 	def OnToolHelp(self, event): 
-		url = "/usr/share/openplotter-doc/external/maiana_app.html"
+		url = "/usr/share/openplotter-doc/maiana/maiana_app.html"
 		webbrowser.open(url, new=2)
 
 	def OnToolSettings(self, event=0): 
