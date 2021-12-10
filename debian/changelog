@@ -1,3 +1,11 @@
+openplotter-maiana (2.1.2-stable) bionic; urgency=medium
+
+  * stable version
+  * Fix docs link
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Fri, 10 Dec 2021 13:47:43 +0100
+
 openplotter-maiana (2.1.1-beta) bionic; urgency=medium
 
   * Add noise detection
