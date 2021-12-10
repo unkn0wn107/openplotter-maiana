@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2021-11-25 17:49+0100\n"
-"PO-Revision-Date: 2021-11-25 19:08+0100\n"
+"PO-Revision-Date: 2021-12-10 13:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -92,7 +92,7 @@ msgstr "Ajustando versión..."
 
 #: maianaPreUninstall.py:29
 msgid "Removing openplotter-maiana-read service..."
-msgstr ""
+msgstr "Eliminando servicio openplotter-maiana-read..."
 
 #: maianaPreUninstall.py:38
 msgid "Removing version..."

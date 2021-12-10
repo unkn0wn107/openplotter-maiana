@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2021-11-25 17:49+0100\n"
-"PO-Revision-Date: 2021-11-25 19:08+0100\n"
+"PO-Revision-Date: 2021-12-10 13:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/openplotter-maiana.desktop:3
 msgid "MAIANA AIS"
-msgstr ""
+msgstr "MAIANA AIS"
 
 #: data/openplotter-maiana.desktop:5
 msgid "openplotter-maiana"
@@ -30,43 +30,43 @@ msgstr "openplotter-maiana"
 
 #: fwupdate.py:26
 msgid "Checking if unit is running"
-msgstr ""
+msgstr "Prüft, ob Einheit läuft"
 
 #: fwupdate.py:42
 msgid "Unit is running, switching to DFU mode"
-msgstr ""
+msgstr "Einheit wird ausgeführt, wechsel zum DFU-Modus"
 
 #: fwupdate.py:70
 msgid "Usage:"
-msgstr ""
+msgstr "Verwendung:"
 
 #: fwupdate.py:82
 msgid "Unable to open serial port"
-msgstr ""
+msgstr "Kann seriellen Port nicht öffnen"
 
 #: fwupdate.py:91
 msgid "Unable to open file"
-msgstr ""
+msgstr "Datei kann nicht geöffnet werden"
 
 #: fwupdate.py:101
 msgid "File size:"
-msgstr ""
+msgstr "Dateigröße:"
 
 #: fwupdate.py:105
 msgid "Could not get unit into DFU mode"
-msgstr ""
+msgstr "Konnte Einheit nicht in den DFU-Modus laden"
 
 #: fwupdate.py:109
 msgid "Unit is in DFU mode"
-msgstr ""
+msgstr "Einheit ist im DFU-Modus"
 
 #: fwupdate.py:113
 msgid "Unable to begin transfer, restart the unit and retry"
-msgstr ""
+msgstr "Übertragung kann nicht gestartet werden, die Einheit neu starten und erneut versuchen"
 
 #: fwupdate.py:117
 msgid "Starting transfer"
-msgstr ""
+msgstr "Transfer wird gestartet"
 
 #: fwupdate.py:136 maianaPostInstall.py:37 maianaPostInstall.py:46
 #: maianaPostInstall.py:52 maianaPreUninstall.py:36 maianaPreUninstall.py:42
@@ -92,7 +92,7 @@ msgstr "Setze Version..."
 
 #: maianaPreUninstall.py:29
 msgid "Removing openplotter-maiana-read service..."
-msgstr ""
+msgstr "Entfernen von openplotter-maiana-read Service..."
 
 #: maianaPreUninstall.py:38
 msgid "Removing version..."
@@ -140,15 +140,15 @@ msgstr "Wählen Sie die Signal K Verbindung für das MAIANA Gerät"
 
 #: openplotterMaiana.py:214 openplotterMaiana.py:241 openplotterMaiana.py:244
 msgid "Cannot connect with the device, try again"
-msgstr ""
+msgstr "Verbindung mit dem Gerät nicht möglich, versuchen Sie es erneut"
 
 #: openplotterMaiana.py:219 openplotterMaiana.py:222
 msgid "The hardware version of your MAIANA device is too old"
-msgstr ""
+msgstr "Die Hardware-Version Ihres MAIANA-Geräts ist zu alt"
 
 #: openplotterMaiana.py:227 openplotterMaiana.py:230 openplotterMaiana.py:233
 msgid "The firmware version of your MAIANA device is too old"
-msgstr ""
+msgstr "Die Firmware-Version Ihres MAIANA-Geräts ist zu alt"
 
 #: openplotterMaiana.py:246
 msgid "Done"
@@ -300,7 +300,7 @@ msgstr "Aktualisieren"
 
 #: openplotterMaiana.py:464
 msgid "Detect noise"
-msgstr ""
+msgstr "Rauschen erkennen"
 
 #: openplotterMaiana.py:467
 msgid "Save station data"
@@ -340,19 +340,19 @@ msgstr "Ungültiger Backbord Versatz"
 
 #: openplotterMaiana.py:578
 msgid "Update firmware"
-msgstr ""
+msgstr "Firmware aktualisieren"
 
 #: openplotterMaiana.py:591
 msgid "Choose a file"
-msgstr ""
+msgstr "Datei auswählen"
 
 #: openplotterMaiana.py:591
 msgid "bin files"
-msgstr ""
+msgstr "bin Dateien"
 
 #: openplotterMaiana.py:591
 msgid "All files"
-msgstr ""
+msgstr "Alle Dateien"
 
 #: openplotterMaiana.py:597
 msgid ""
@@ -360,26 +360,29 @@ msgid ""
 "\n"
 "Do you want to go ahead?"
 msgstr ""
+"Ihre MAIANA-Geräte-Firmware wird aktualisiert, bitte trennen Sie sie nicht oder tamper sie während des Updates.\n"
+"\n"
+"Möchten Sie fortfahren?"
 
 #: openplotterMaiana.py:598
 msgid "Question"
-msgstr ""
+msgstr "Frage"
 
 #: openplotterMaiana.py:601
 msgid "Stopping Signal K server"
-msgstr ""
+msgstr "Signal K Server stoppen"
 
 #: openplotterMaiana.py:608
 msgid "Updating firmware, please wait... "
-msgstr ""
+msgstr "Firmware wird aktualisiert, bitte warten... "
 
 #: openplotterMaiana.py:610
 msgid "Starting Signal K server"
-msgstr ""
+msgstr "Starte Signal K Server"
 
 #: openplotterMaianaRead.py:74
 msgid "There may be electromagnetic interference near the MAIANA AIS antenna"
-msgstr ""
+msgstr "Es kann zu elektromagnetischen Störungen in der Nähe der MAIANA AIS Antenne kommen"
 
 #: startup.py:43
 msgid "Checking MAIANA transponder..."
