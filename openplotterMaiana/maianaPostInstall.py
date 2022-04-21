@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# This file is part of Openplotter.
-# Copyright (C) 2021 by Sailoog <https://github.com/openplotter/openplotter-maiana>
+# This file is part of OpenPlotter.
+# Copyright (C) 2022 by Sailoog <https://github.com/openplotter/openplotter-maiana>
 #
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ def main():
 		else: print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
+	#TODO switch from service to startup
 	print(_('Adding openplotter-maiana-read service...'))
 	try:
 		fo = open('/etc/systemd/system/openplotter-maiana-read.service', "w")

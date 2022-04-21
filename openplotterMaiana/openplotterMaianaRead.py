@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# This file is part of Openplotter.
-# Copyright (C) 2021 by Sailoog <https://github.com/openplotter/openplotter-maiana>
+# This file is part of OpenPlotter.
+# Copyright (C) 2022 by Sailoog <https://github.com/openplotter/openplotter-maiana>
 #
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@ def main():
 		sock = False
 		while True:
 			try:
+				#TODO switch from service to startup
 				sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				server_address = ('localhost', 10110)
 				sock.connect(server_address)

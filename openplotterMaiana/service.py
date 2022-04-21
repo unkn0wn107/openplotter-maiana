@@ -17,6 +17,8 @@
 
 import sys, subprocess
 
+#TODO remove
+
 if sys.argv[1]=='openplotter-maiana-read':
 	if sys.argv[2]=='start':
 		subprocess.call(['systemctl', 'enable', 'openplotter-maiana-read'])

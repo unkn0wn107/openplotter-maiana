@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# This file is part of Openplotter.
-# Copyright (C) 2021 by Sailoog <https://github.com/openplotter/openplotter-maiana>
+# This file is part of OpenPlotter.
+# Copyright (C) 2022 by Sailoog <https://github.com/openplotter/openplotter-maiana>
 #                     
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,6 +27,8 @@ class Start():
 		
 		self.initialMessage = ''
 
+		#TODO run read from here
+
 	def start(self): 
 		green = '' 
 		black = '' 
@@ -47,6 +49,8 @@ class Check():
 		black = '' 
 		red = '' 
 
+		#TODO check localhost 10110 and "Suppress nmea0183 event" in sk connection
+		
 		#device
 		device = self.conf.get('MAIANA', 'device')
 		if not device:
