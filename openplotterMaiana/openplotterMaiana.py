@@ -18,7 +18,7 @@
 #TODO add tx action
 #TODO parse bin file
 
-import wx, os, webbrowser, subprocess, time, datetime, ujson, serial, requests, re
+import wx, os, webbrowser, subprocess, time, datetime, ujson, serial, requests, re, sys
 import wx.richtext as rt
 from openplotterSettings import conf
 from openplotterSettings import language
@@ -137,6 +137,11 @@ class MyFrame(wx.Frame):
 			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/connections/-'
 			webbrowser.open(url, new=2)
 
+	def restartRead(self):
+		subprocess.call(['pkill','-f','openplotter-maiana-read'])
+		subprocess.Popen('openplotter-maiana-read')
+		time.sleep(1)
+
 	def onRead(self):
 		self.ShowStatusBarYELLOW(_('Reading MAIANA device settings...'))
 		self.mmsi.SetValue('')
@@ -217,6 +222,15 @@ class MyFrame(wx.Frame):
 			self.SKconn.SetValue(self.connInit)
 			self.ShowStatusBarRED(_('Select the Signal K connection for the MAIANA device'))
 
+		if deviceOld != self.device:
+			if self.device: self.restartRead()
+			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+		else:
+			if self.device:
+				test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
+				if not 'openplotter-maiana-read' in test: self.restartRead()
+			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+
 		if self.device:
 			ser = serial.Serial(self.device, 38400)
 			ser.write('sys?\r\n'.encode("utf-8"))
@@ -235,6 +249,7 @@ class MyFrame(wx.Frame):
 					ts2 = time.mktime(datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%fZ").timetuple())
 					if ts - ts2 > 3: 
 						self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
+						print('#############################')
 						return
 					hardwareRevision = data['hardwareRevision']['value']
 					hardwareRevision = hardwareRevision.split('.')
@@ -391,17 +406,6 @@ class MyFrame(wx.Frame):
 				if 'bowOffset' in data['station']: self.bowOffset.SetValue(str(data['station']['bowOffset']['value']))
 				if 'portOffset' in data['station']: self.portOffset.SetValue(str(data['station']['portOffset']['value']))
 
-		if deviceOld != self.device:
-			if self.device:
-				subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', 'openplotter-maiana-read', 'restart'])
-			else:
-				subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', 'openplotter-maiana-read', 'stop'])
-		else:
-			if self.device:
-				try:
-					subprocess.check_output(['systemctl', 'is-active', 'openplotter-maiana-read']).decode(sys.stdin.encoding)
-				except:
-					subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', 'openplotter-maiana-read', 'restart'])
 
 	def onSKconn(self, event):
 		deviceOld = self.conf.get('MAIANA', 'device')
@@ -426,18 +430,14 @@ class MyFrame(wx.Frame):
 					self.conf.set('MAIANA', 'device', self.device)
 			except: pass
 		if deviceOld != self.device:
-			if self.device:
-				subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', 'openplotter-maiana-read', 'restart'])
-				time.sleep(1)
-			else:
-				subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', 'openplotter-maiana-read', 'stop'])
+			if self.device: self.restartRead()
+			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
 		else:
 			if self.device:
-				try:
-					subprocess.check_output(['systemctl', 'is-active', 'openplotter-maiana-read']).decode(sys.stdin.encoding)
-				except:
-					subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', 'openplotter-maiana-read', 'restart'])
-					time.sleep(1)
+				test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
+				if not 'openplotter-maiana-read' in test: self.restartRead()
+			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+			
 		self.onRead()
 
 	def pageSettings(self):

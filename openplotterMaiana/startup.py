@@ -25,14 +25,16 @@ class Start():
 		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-maiana',currentLanguage)
 		
-		self.initialMessage = ''
-
-		#TODO run read from here
+		self.initialMessage = _('Starting MAIANA transponder...')
 
 	def start(self): 
 		green = '' 
 		black = '' 
 		red = '' 
+
+		subprocess.call(['pkill', '-f', 'openplotter-maiana-read'])
+		subprocess.Popen('openplotter-maiana-read')
+		time.sleep(1)
 
 		return {'green': green,'black': black,'red': red}
 
@@ -73,27 +75,26 @@ class Check():
 			if not green: green = msg
 			else: green+= ' | '+msg
 
-		#service
+		# check service
+		test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
 		if device and (result[0] == 'approved' or result[0] == 'validated'):
-			try:
-				subprocess.check_output(['systemctl', 'is-active', 'openplotter-maiana-read']).decode(sys.stdin.encoding)
-				msg = _('OpenPlotter MAIANA service is running')
+			if 'openplotter-maiana-read' in test: 
+				msg = _('running')
 				if not green: green = msg
 				else: green+= ' | '+msg
-			except:			
-				msg = _('OpenPlotter MAIANA service is not running')
-				if not red: red = msg
-				else: red+= '\n    '+msg
+			else:
+				msg = _('not running')
+				if red: red += '\n   '+msg
+				else: red = msg
 		else:
-			try:
-				subprocess.check_output(['systemctl', 'is-active', 'openplotter-maiana-read']).decode(sys.stdin.encoding)
-				msg = _('OpenPlotter MAIANA service is running')
-				if not red: red = msg
-				else: red+= '\n    '+msg
-			except:			
-				msg = _('OpenPlotter MAIANA service is not running')
-				if not green: green = msg
-				else: green+= ' | '+msg
+			if 'openplotter-maiana-read' in test: 
+				msg = _('running')
+				if red: red += '\n   '+msg
+				else: red = msg
+			else:
+				msg = _('not running')
+				if not black: black = msg
+				else: black+= ' | '+msg
 
 		return {'green': green,'black': black,'red': red}
 

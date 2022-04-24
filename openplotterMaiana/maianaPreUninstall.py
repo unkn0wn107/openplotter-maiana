@@ -26,13 +26,9 @@ def main():
 	package = 'openplotter-maiana'
 	language.Language(currentdir, package, currentLanguage)
 
-	#TODO switch from service to startup
-	print(_('Removing openplotter-maiana-read service...'))
+	print(_('Stopping OpenPlotter MAIANA service...'))
 	try:
-		subprocess.call(['systemctl', 'disable', 'openplotter-maiana-read'])
-		subprocess.call(['systemctl', 'stop', 'openplotter-maiana-read'])
-		subprocess.call(['rm', '-f', '/etc/systemd/system/openplotter-maiana-read.service'])
-		subprocess.call(['systemctl', 'daemon-reload'])
+		subprocess.call(['pkill','-f','openplotter-maiana-read'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 

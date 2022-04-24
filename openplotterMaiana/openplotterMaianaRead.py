@@ -37,7 +37,6 @@ def main():
 		sock = False
 		while True:
 			try:
-				#TODO switch from service to startup
 				sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				server_address = ('localhost', 10110)
 				sock.connect(server_address)
