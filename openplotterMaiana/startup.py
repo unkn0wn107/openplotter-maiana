@@ -15,8 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import time, os, subprocess, sys
+import time, os, subprocess, sys, ujson
 from openplotterSettings import language
+from openplotterSettings import platform
 from openplotterSignalkInstaller import connections
 
 class Start(): 
@@ -41,6 +42,7 @@ class Start():
 class Check():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
+		self.platform = platform.Platform()
 		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-maiana',currentLanguage)
 		
@@ -50,8 +52,6 @@ class Check():
 		green = '' 
 		black = '' 
 		red = '' 
-
-		#TODO check localhost 10110 and "Suppress nmea0183 event" in sk connection
 		
 		#device
 		device = self.conf.get('MAIANA', 'device')
@@ -63,6 +63,51 @@ class Check():
 			msg = _('MAIANA device')+': '+device
 			if not green: green = msg
 			else: green+= ' | '+msg
+
+		#check devie¡ce and server settings
+		if device:
+			settingsOK = False
+			nmeaOK = True
+			try:
+				setting_file = self.platform.skDir+'/settings.json'
+				with open(setting_file) as data_file:
+					data = ujson.load(data_file)
+			except: data = {}
+			if 'pipedProviders' in data: data2 = data['pipedProviders']
+			else: data2 = []
+			for i in data2:
+				enabled = ''
+				dataType = ''
+				baudrate = ''
+				connectionType = ''
+				suppress0183event = False
+				try:
+					dataSubOptions = i['pipeElements'][0]['options']['subOptions']
+					if device in dataSubOptions['device']:
+						enabled = i['enabled']
+						dataType = i['pipeElements'][0]['options']['type']
+						baudrate = dataSubOptions['baudrate']
+						connectionType = dataSubOptions['type']
+						if 'suppress0183event' in dataSubOptions: suppress0183event = dataSubOptions['suppress0183event']
+						if enabled and connectionType == 'serial' and baudrate == 38400 and dataType == 'NMEA0183' and not suppress0183event: settingsOK = True
+				except: pass			
+				if settingsOK:
+					msg = _('device settings OK')
+					if not green: green = msg
+					else: green+= ' | '+msg
+				else:
+					msg = _('check device settings')
+					if not red: red = msg
+					else: red+= '\n    '+msg
+
+			if 'interfaces' in data: data2 = data['interfaces']
+			else: data2 = []
+			if 'nmea-tcp' in data2:
+				if not data2['nmea-tcp']: nmeaOK = False
+			if not nmeaOK:
+				msg = _('NMEA 0183 over TCP (10110) interface is disabled. Check Signal K server settings')
+				if not red: red = msg
+				else: red+= '\n    '+msg
 
 		#access
 		skConnections = connections.Connections('MAIANA')

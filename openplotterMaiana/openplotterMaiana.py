@@ -199,6 +199,7 @@ class MyFrame(wx.Frame):
 			device = ''
 			baudrate = ''
 			connectionType = ''
+			suppress0183event = False
 			try:
 				enabled = i['enabled']
 				skID = i['id']
@@ -207,7 +208,8 @@ class MyFrame(wx.Frame):
 				device = dataSubOptions['device']
 				baudrate = dataSubOptions['baudrate']
 				connectionType = dataSubOptions['type']
-				if enabled and connectionType == 'serial' and baudrate == 38400 and dataType == 'NMEA0183':
+				if 'suppress0183event' in dataSubOptions: suppress0183event = dataSubOptions['suppress0183event']
+				if enabled and connectionType == 'serial' and baudrate == 38400 and dataType == 'NMEA0183' and not suppress0183event:
 					availableIDs.append(skID)
 					if device == self.device: selected = skID
 			except: pass
@@ -437,7 +439,7 @@ class MyFrame(wx.Frame):
 				test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
 				if not 'openplotter-maiana-read' in test: self.restartRead()
 			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
-			
+
 		self.onRead()
 
 	def pageSettings(self):
