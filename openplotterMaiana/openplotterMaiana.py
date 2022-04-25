@@ -15,9 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-#TODO add tx action
-#TODO parse bin file
-
 import wx, os, webbrowser, subprocess, time, datetime, ujson, serial, requests, re, sys
 import wx.richtext as rt
 from openplotterSettings import conf
@@ -287,13 +284,18 @@ class MyFrame(wx.Frame):
 
 			self.logger.BeginFontSize(10)
 			self.logger.WriteText(_('Hardware revision'))
-			if 'hardwareRevision' in data: self.logger.WriteText(': '+data['hardwareRevision']['value'])
+			if 'hardwareRevision' in data: 
+				self.logger.WriteText(': '+data['hardwareRevision']['value'])
+				self.hardwareRevision = data['hardwareRevision']['value']
 			self.logger.Newline()
 			self.logger.WriteText(_('Firmware revision'))
-			if 'firmwareRevision' in data: self.logger.WriteText(': '+data['firmwareRevision']['value'])
+			if 'firmwareRevision' in data: 
+				self.logger.WriteText(': '+data['firmwareRevision']['value'])
 			self.logger.Newline()
 			self.logger.WriteText(_('Type of MCU'))
-			if 'MCUtype' in data: self.logger.WriteText(': '+data['MCUtype']['value'])
+			if 'MCUtype' in data: 
+				self.logger.WriteText(': '+data['MCUtype']['value'])
+				self.MCUtype = data['MCUtype']['value']
 			self.logger.Newline()
 			self.logger.WriteText(_('Serial number'))
 			if 'serialNumber' in data: self.logger.WriteText(': '+data['serialNumber']['value'])
@@ -585,6 +587,10 @@ class MyFrame(wx.Frame):
 		toolRefresh = self.toolbar2.AddTool(201, _('Refresh'), wx.Bitmap(self.currentdir+"/data/refresh.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolRefresh, toolRefresh)
 		self.toolbar2.AddSeparator()
+
+		toolDownload= self.toolbar2.AddTool(203, _('Download firmware'), wx.Bitmap(self.currentdir+"/data/download.png"))
+		self.Bind(wx.EVT_TOOL, self.OnToolDownload, toolDownload)
+
 		toolFile= self.toolbar2.AddTool(202, _('Update firmware'), wx.Bitmap(self.currentdir+"/data/file.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolFile, toolFile)
 		self.logger = rt.RichTextCtrl(self.firmware, style=wx.TE_MULTILINE|wx.TE_READONLY|wx.TE_DONTWRAP|wx.LC_SORT_ASCENDING)
@@ -596,6 +602,10 @@ class MyFrame(wx.Frame):
 
 		self.firmware.SetSizer(vbox)
 
+	def OnToolDownload(self,e):
+		url = "https://github.com/peterantypas/maiana/tree/master/latest/Firmware/Transponder/Binaries"
+		webbrowser.open(url, new=2)
+
 	def OnToolFile(self,e):
 		file_path = False
 		dlg = wx.FileDialog(self, message=_('Choose a file'), defaultDir='~', defaultFile='', wildcard=_('bin files') + ' (*.bin)|*.bin|' + _('All files') + ' (*.*)|*.*', style=wx.FD_OPEN | wx.FD_CHANGE_DIR)
@@ -603,6 +613,25 @@ class MyFrame(wx.Frame):
 			file_path = dlg.GetPath()
 		dlg.Destroy()
 		if file_path:
+			try:
+				fileName = file_path.split('/')
+				fileName = fileName[-1]
+				fileName = fileName.split('-')
+				MCUtype = fileName[1].upper()
+				if MCUtype != self.MCUtype:
+					self.ShowStatusBarRED(_('MCU type mismatch: ')+MCUtype)
+					return
+				hardwareRevision = fileName[2].replace('hw','')
+				hardwareRevision2 = self.hardwareRevision.split('.')
+				del hardwareRevision2[-1]
+				hardwareRevision2 = '.'.join(hardwareRevision2)
+				if hardwareRevision != hardwareRevision2:
+					self.ShowStatusBarRED(_('Hardware revision mismatch: ')+hardwareRevision)
+					return
+			except Exception as e:
+				self.ShowStatusBarRED(_('Error processing file: ')+str(e))
+				return
+			self.SetStatusText('')
 			dlg = wx.MessageDialog(None, _(
 				'Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n\nDo you want to go ahead?'),
 				_('Question'), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
