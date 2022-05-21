@@ -61,8 +61,8 @@ class Check():
 			else: red+= '\n    '+msg
 		else:
 			msg = _('MAIANA device')+': '+device
-			if not green: green = msg
-			else: green+= ' | '+msg
+			if not black: black = msg
+			else: black+= ' | '+msg
 
 		#check devie¡ce and server settings
 		if device:
@@ -93,8 +93,8 @@ class Check():
 				except: pass			
 				if settingsOK:
 					msg = _('device settings OK')
-					if not green: green = msg
-					else: green+= ' | '+msg
+					if not black: black = msg
+					else: black+= ' | '+msg
 				else:
 					msg = _('check device settings')
 					if not red: red = msg
@@ -117,8 +117,8 @@ class Check():
 			else: red+= '\n    '+result[1]
 		if result[0] == 'approved' or result[0] == 'validated':
 			msg = _('Access to Signal K server validated')
-			if not green: green = msg
-			else: green+= ' | '+msg
+			if not black: black = msg
+			else: black+= ' | '+msg
 
 		# check service
 		test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
