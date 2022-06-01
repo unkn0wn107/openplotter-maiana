@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2021-11-25 17:49+0100\n"
-"PO-Revision-Date: 2021-12-10 13:43+0100\n"
+"PO-Revision-Date: 2022-06-01 21:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
@@ -22,237 +22,237 @@ msgstr ""
 
 #: data/openplotter-maiana.desktop:3
 msgid "MAIANA AIS"
-msgstr ""
+msgstr "MAIANA AIS"
 
 #: data/openplotter-maiana.desktop:5
 msgid "openplotter-maiana"
-msgstr ""
+msgstr "openplotter-maiana"
 
 #: fwupdate.py:26
 msgid "Checking if unit is running"
-msgstr ""
+msgstr "Kontrollerer om enheten kjører"
 
 #: fwupdate.py:42
 msgid "Unit is running, switching to DFU mode"
-msgstr ""
+msgstr "Enheten kjører, bytter til DFU-modus"
 
 #: fwupdate.py:70
 msgid "Usage:"
-msgstr ""
+msgstr "Bruk:"
 
 #: fwupdate.py:82
 msgid "Unable to open serial port"
-msgstr ""
+msgstr "Kan ikke åpne seriell port"
 
 #: fwupdate.py:91
 msgid "Unable to open file"
-msgstr ""
+msgstr "Kan ikke åpne fil"
 
 #: fwupdate.py:101
 msgid "File size:"
-msgstr ""
+msgstr "Filstørrelse:"
 
 #: fwupdate.py:105
 msgid "Could not get unit into DFU mode"
-msgstr ""
+msgstr "Kunne ikke sette enhet i DFU-modus"
 
 #: fwupdate.py:109
 msgid "Unit is in DFU mode"
-msgstr ""
+msgstr "Enheten er i DFU-modus"
 
 #: fwupdate.py:113
 msgid "Unable to begin transfer, restart the unit and retry"
-msgstr ""
+msgstr "Kan ikke starte overføringen, start enheten på nytt og prøv igjen"
 
 #: fwupdate.py:117
 msgid "Starting transfer"
-msgstr ""
+msgstr "Starter overføring"
 
 #: fwupdate.py:136 maianaPostInstall.py:37 maianaPostInstall.py:46
 #: maianaPostInstall.py:52 maianaPreUninstall.py:36 maianaPreUninstall.py:42
 msgid "FAILED: "
-msgstr ""
+msgstr "FEILET: "
 
 #: maianaPostInstall.py:30
 msgid "Checking access to Signal K server..."
-msgstr ""
+msgstr "Sjekker tilgang til Signal K-server..."
 
 #: maianaPostInstall.py:36 maianaPostInstall.py:45 maianaPostInstall.py:51
 #: maianaPreUninstall.py:35 maianaPreUninstall.py:41
 msgid "DONE"
-msgstr ""
+msgstr "FERDIG"
 
 #: maianaPostInstall.py:39
 msgid "Adding openplotter-maiana-read service..."
-msgstr ""
+msgstr "Legger til openplotter-maiana-lese-tjeneste..."
 
 #: maianaPostInstall.py:48
 msgid "Setting version..."
-msgstr ""
+msgstr "Angir versjon..."
 
 #: maianaPreUninstall.py:29
 msgid "Removing openplotter-maiana-read service..."
-msgstr ""
+msgstr "Fjerner openplotter-maiana-lese-tjenesten..."
 
 #: maianaPreUninstall.py:38
 msgid "Removing version..."
-msgstr ""
+msgstr "Fjerner versjonen..."
 
 #: openplotterMaiana.py:37
 msgid "MAIANA AIS transponder"
-msgstr ""
+msgstr "MAIANA AIS transponder"
 
 #: openplotterMaiana.py:47
 msgid "Help"
-msgstr ""
+msgstr "Hjelp"
 
 #: openplotterMaiana.py:50 openplotterMaiana.py:69
 msgid "Settings"
-msgstr ""
+msgstr "Innstillinger"
 
 #: openplotterMaiana.py:53
 msgid "Approve"
-msgstr ""
+msgstr "Godta"
 
 #: openplotterMaiana.py:55
 msgid "Allowed"
-msgstr ""
+msgstr "Tillatt"
 
 #: openplotterMaiana.py:58
 msgid "MAIANA Signal K connection"
-msgstr ""
+msgstr "MAIANA Signal K-tilkobling"
 
 #: openplotterMaiana.py:62
 msgid "Connections"
-msgstr ""
+msgstr "Tilkoblinger"
 
 #: openplotterMaiana.py:70
 msgid "Firmware"
-msgstr ""
+msgstr "Fastvare"
 
 #: openplotterMaiana.py:138
 msgid "Reading MAIANA device settings..."
-msgstr ""
+msgstr "Leser MAIANA-enhetens innstillinger..."
 
 #: openplotterMaiana.py:195
 msgid "Select the Signal K connection for the MAIANA device"
-msgstr ""
+msgstr "Velg Signal K-tilkobling til MAIANA-enheten"
 
 #: openplotterMaiana.py:214 openplotterMaiana.py:241 openplotterMaiana.py:244
 msgid "Cannot connect with the device, try again"
-msgstr ""
+msgstr "Kan ikke koble til enheten, prøv igjen"
 
 #: openplotterMaiana.py:219 openplotterMaiana.py:222
 msgid "The hardware version of your MAIANA device is too old"
-msgstr ""
+msgstr "MAIANA enheten er for gammel"
 
 #: openplotterMaiana.py:227 openplotterMaiana.py:230 openplotterMaiana.py:233
 msgid "The firmware version of your MAIANA device is too old"
-msgstr ""
+msgstr "Fastvareversjonen på MAIANA-enheten er for gammel"
 
 #: openplotterMaiana.py:246
 msgid "Done"
-msgstr ""
+msgstr "Ferdig"
 
 #: openplotterMaiana.py:249
 msgid "Hardware revision"
-msgstr ""
+msgstr "Revisjon av maskinvare"
 
 #: openplotterMaiana.py:252
 msgid "Firmware revision"
-msgstr ""
+msgstr "Fastvarerevisjon"
 
 #: openplotterMaiana.py:255
 msgid "Type of MCU"
-msgstr ""
+msgstr "Type MCU"
 
 #: openplotterMaiana.py:258
 msgid "Serial number"
-msgstr ""
+msgstr "Serienummer"
 
 #: openplotterMaiana.py:263
 msgid "Transmitter hardware module"
-msgstr ""
+msgstr "Senderens maskinvaremodul"
 
 #: openplotterMaiana.py:268
 msgid "present"
-msgstr ""
+msgstr "til stede"
 
 #: openplotterMaiana.py:271
 msgid "not present"
-msgstr ""
+msgstr "ikke til stede"
 
 #: openplotterMaiana.py:274
 msgid "Hardware TX switch"
-msgstr ""
+msgstr "Maskinvare TX-bryter"
 
 #: openplotterMaiana.py:279 openplotterMaiana.py:291
 msgid "ON"
-msgstr ""
+msgstr "PÅ"
 
 #: openplotterMaiana.py:282 openplotterMaiana.py:296
 msgid "OFF"
-msgstr ""
+msgstr "AV"
 
 #: openplotterMaiana.py:285 openplotterMaiana.py:461
 msgid "Software TX switch"
-msgstr ""
+msgstr "Programvare TX-bryter"
 
 #: openplotterMaiana.py:300
 msgid "Station data"
-msgstr ""
+msgstr "Stasjonsdata"
 
 #: openplotterMaiana.py:305
 msgid "provided"
-msgstr ""
+msgstr "oppgitt"
 
 #: openplotterMaiana.py:308
 msgid "not provided"
-msgstr ""
+msgstr "ikke oppgitt"
 
 #: openplotterMaiana.py:311
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: openplotterMaiana.py:316
 msgid "transmitting"
-msgstr ""
+msgstr "overfører"
 
 #: openplotterMaiana.py:319
 msgid "not transmitting"
-msgstr ""
+msgstr "sender ikke"
 
 #: openplotterMaiana.py:322
 msgid "Channel A latest transmitted message"
-msgstr ""
+msgstr "Siste overførte melding på kanal A"
 
 #: openplotterMaiana.py:328 openplotterMaiana.py:341
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: openplotterMaiana.py:332 openplotterMaiana.py:344
 msgid "Time"
-msgstr ""
+msgstr "Tid"
 
 #: openplotterMaiana.py:335
 msgid "Channel B latest transmitted message"
-msgstr ""
+msgstr "Siste overførte melding på kanal B"
 
 #: openplotterMaiana.py:347
 msgid "Channel A noise floor"
-msgstr ""
+msgstr "Støyterskel kanal A"
 
 #: openplotterMaiana.py:352
 msgid "Channel B noise floor"
-msgstr ""
+msgstr "Støyterskel kanal B"
 
 #: openplotterMaiana.py:376
 msgid " Press \"Approve\" and then \"Refresh\"."
-msgstr ""
+msgstr " Trykk \"Godkjenn\" og deretter \"Oppdater\"."
 
 #: openplotterMaiana.py:380
 msgid " Press \"Refresh\"."
-msgstr ""
+msgstr " Trykk på \"Oppdater\"."
 
 #: openplotterMaiana.py:382
 msgid " Press \"Allowed\"."

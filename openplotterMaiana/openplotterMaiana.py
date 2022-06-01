@@ -528,7 +528,7 @@ class MyFrame(wx.Frame):
 
 		vesselName = self.vesselName.GetValue()
 		vesselName = vesselName.upper()
-		if not re.match('^[0-9A-Z]{1,20}$', vesselName):
+		if not re.match('^[0-9A-Z ]{1,20}$', vesselName):
 			self.ShowStatusBarRED(_('Invalid vessel name'))
 			return
 
