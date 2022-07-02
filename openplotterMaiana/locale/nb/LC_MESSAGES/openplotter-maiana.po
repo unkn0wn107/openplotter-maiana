@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2021-11-25 17:49+0100\n"
-"PO-Revision-Date: 2022-06-01 21:30+0200\n"
+"PO-Revision-Date: 2022-07-02 20:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
@@ -256,103 +256,103 @@ msgstr " Trykk på \"Oppdater\"."
 
 #: openplotterMaiana.py:382
 msgid " Press \"Allowed\"."
-msgstr ""
+msgstr " Trykk \"Tillatt\"."
 
 #: openplotterMaiana.py:439
 msgid "MMSI"
-msgstr ""
+msgstr "MMSI"
 
 #: openplotterMaiana.py:441
 msgid "Vessel name"
-msgstr ""
+msgstr "Navn på fartøy"
 
 #: openplotterMaiana.py:443
 msgid "Call sign"
-msgstr ""
+msgstr "Kallesignal"
 
 #: openplotterMaiana.py:445
 msgid "Vessel type"
-msgstr ""
+msgstr "Type fartøy"
 
 #: openplotterMaiana.py:447
 msgid "LOA"
-msgstr ""
+msgstr "LOA"
 
 #: openplotterMaiana.py:449
 msgid "Beam"
-msgstr ""
+msgstr "Bredde"
 
 #: openplotterMaiana.py:451
 msgid "Port Offset"
-msgstr ""
+msgstr "Babord forskyvning"
 
 #: openplotterMaiana.py:453
 msgid "Bow Offset"
-msgstr ""
+msgstr "Baug-forskyvning"
 
 #: openplotterMaiana.py:455
 msgid "Units: meters"
-msgstr ""
+msgstr "Enheter: meter"
 
 #: openplotterMaiana.py:458 openplotterMaiana.py:575
 msgid "Refresh"
-msgstr ""
+msgstr "Oppdater"
 
 #: openplotterMaiana.py:464
 msgid "Detect noise"
-msgstr ""
+msgstr "Oppdag støy"
 
 #: openplotterMaiana.py:467
 msgid "Save station data"
-msgstr ""
+msgstr "Lagre stasjonsdata"
 
 #: openplotterMaiana.py:514
 msgid "Invalid MMSI"
-msgstr ""
+msgstr "Ugyldig MMSI"
 
 #: openplotterMaiana.py:520
 msgid "Invalid vessel name"
-msgstr ""
+msgstr "Ugyldig fartøynavn"
 
 #: openplotterMaiana.py:525
 msgid "Invalid call sign"
-msgstr ""
+msgstr "Ugyldig kallesignal"
 
 #: openplotterMaiana.py:534
 msgid "Invalid vessel type"
-msgstr ""
+msgstr "Ugyldig fartøystype"
 
 #: openplotterMaiana.py:539
 msgid "Invalid LOA"
-msgstr ""
+msgstr "Ugyldig LOA"
 
 #: openplotterMaiana.py:544
 msgid "Invalid Beam"
-msgstr ""
+msgstr "Ugyldig bredde"
 
 #: openplotterMaiana.py:549
 msgid "Invalid bow offset"
-msgstr ""
+msgstr "Ugyldig baug-forskyvning"
 
 #: openplotterMaiana.py:554
 msgid "Invalid port offset"
-msgstr ""
+msgstr "Ugyldig babord-forskyvning"
 
 #: openplotterMaiana.py:578
 msgid "Update firmware"
-msgstr ""
+msgstr "Oppdater fastvare"
 
 #: openplotterMaiana.py:591
 msgid "Choose a file"
-msgstr ""
+msgstr "Velg en fil"
 
 #: openplotterMaiana.py:591
 msgid "bin files"
-msgstr ""
+msgstr "binærfiler"
 
 #: openplotterMaiana.py:591
 msgid "All files"
-msgstr ""
+msgstr "Alle filer"
 
 #: openplotterMaiana.py:597
 msgid ""
@@ -360,47 +360,50 @@ msgid ""
 "\n"
 "Do you want to go ahead?"
 msgstr ""
+"Din MAIANA-enhet fastvare vil bli oppdatert, vennligst ikke koble fra eller rør den under oppdateringen.\n"
+"\n"
+"Vil du fortsette i gang?"
 
 #: openplotterMaiana.py:598
 msgid "Question"
-msgstr ""
+msgstr "Spørsmål"
 
 #: openplotterMaiana.py:601
 msgid "Stopping Signal K server"
-msgstr ""
+msgstr "Stopper Signal K server"
 
 #: openplotterMaiana.py:608
 msgid "Updating firmware, please wait... "
-msgstr ""
+msgstr "Oppdaterer fastvare, vennligst vent... "
 
 #: openplotterMaiana.py:610
 msgid "Starting Signal K server"
-msgstr ""
+msgstr "Starter Signal K server på nytt"
 
 #: openplotterMaianaRead.py:74
 msgid "There may be electromagnetic interference near the MAIANA AIS antenna"
-msgstr ""
+msgstr "Det kan være elektromagnetisk interferens i nærheten av MAIANA AIS-antennen"
 
 #: startup.py:43
 msgid "Checking MAIANA transponder..."
-msgstr ""
+msgstr "Sjekker MAIANA transponder..."
 
 #: startup.py:53
 msgid "There is no MAIANA device defined"
-msgstr ""
+msgstr "Det finnes ingen MAIANA-enhet definert"
 
 #: startup.py:57
 msgid "MAIANA device"
-msgstr ""
+msgstr "MAIANA-enhet"
 
 #: startup.py:68
 msgid "Access to Signal K server validated"
-msgstr ""
+msgstr "Tilgang til Signal K-server validert"
 
 #: startup.py:76 startup.py:86
 msgid "OpenPlotter MAIANA service is running"
-msgstr ""
+msgstr "OpenPlotter MAIANA-tjenesten kjører"
 
 #: startup.py:80 startup.py:90
 msgid "OpenPlotter MAIANA service is not running"
-msgstr ""
+msgstr "OpenPlotter MAIANA-tjenesten kjører ikke"
