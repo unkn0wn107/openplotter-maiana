@@ -14,7 +14,7 @@ Install MAIANA AIS transponder from openplotter-settings app.
 
 Install openplotter-maiana dependencies:
 
-`sudo apt install `
+`sudo apt install openplotter-signalk-installer python3-serial`
 
 Clone the repository:
 
@@ -34,11 +34,15 @@ cd ..
 sudo dpkg -i openplotter-maiana_x.x.x-xxx_all.deb
 ```
 
+Run post-installation script:
+
+`sudo maianaPostInstall`
+
 Run:
 
 `openplotter-maiana`
 
-Make your changes and repeat package and installation to test. Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter).
+Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://cloudsmith.io/~openplotter/repos/openplotter/packages/).
 
 ### Documentation
 
