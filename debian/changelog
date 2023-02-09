@@ -1,3 +1,10 @@
+openplotter-maiana (3.1.6-stable) bullseye; urgency=medium
+
+  * Add Signal K reconnection option
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Wed, 08 Feb 2023 20:59:21 +0100
+
 openplotter-maiana (3.1.4-stable) bullseye; urgency=medium
 
   * Remove service and make daemon to be run by openplotter startup process

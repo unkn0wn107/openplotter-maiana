@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter-maiana\n"
-"POT-Creation-Date: 2022-05-21 21:09+0200\n"
-"PO-Revision-Date: 2022-07-02 20:34+0200\n"
+"POT-Creation-Date: 2023-02-08 21:05+0100\n"
+"PO-Revision-Date: 2023-02-09 19:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -118,7 +118,7 @@ msgid "Approve"
 msgstr ""
 
 #: openplotterMaiana.py:55
-msgid "Allowed"
+msgid "Reconnect"
 msgstr ""
 
 #: openplotterMaiana.py:58
@@ -141,12 +141,12 @@ msgstr ""
 msgid " Press \"Approve\" and then \"Refresh\"."
 msgstr ""
 
-#: openplotterMaiana.py:176
-msgid " Press \"Refresh\"."
+#: openplotterMaiana.py:173
+msgid " Try \"Reconnect\"."
 msgstr ""
 
-#: openplotterMaiana.py:179
-msgid " Press \"Allowed\"."
+#: openplotterMaiana.py:176
+msgid " Press \"Refresh\"."
 msgstr ""
 
 #: openplotterMaiana.py:222
