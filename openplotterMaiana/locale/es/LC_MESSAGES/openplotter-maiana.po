@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2023-02-08 21:05+0100\n"
-"PO-Revision-Date: 2023-02-09 19:26+0100\n"
+"PO-Revision-Date: 2023-02-09 18:18\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -13,12 +13,12 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: es-ES\n"
 "X-Crowdin-File: openplotter-maiana.po\n"
 "X-Crowdin-File-ID: 33\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: actions.py:29
 msgid "Turn MAIANA TX on"
@@ -379,13 +379,9 @@ msgid "Error processing file: "
 msgstr ""
 
 #: openplotterMaiana.py:636
-msgid ""
-"Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n"
-"\n"
+msgid "Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n\n"
 "Do you want to go ahead?"
-msgstr ""
-"Se actualizará el firmware de su dispositivo MAIANA, por favor no lo desconecte ni manipule durante la actualización.\n"
-"\n"
+msgstr "Se actualizará el firmware de su dispositivo MAIANA, por favor no lo desconecte ni manipule durante la actualización.\n\n"
 "¿Desea continuar?"
 
 #: openplotterMaiana.py:637
@@ -447,3 +443,4 @@ msgstr ""
 #: startup.py:131 startup.py:140
 msgid "not running"
 msgstr ""
+

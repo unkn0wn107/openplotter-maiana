@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2023-02-08 21:05+0100\n"
-"PO-Revision-Date: 2023-02-09 19:26+0100\n"
+"PO-Revision-Date: 2023-07-31 10:14\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi\n"
@@ -13,20 +13,20 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: fi\n"
 "X-Crowdin-File: openplotter-maiana.po\n"
 "X-Crowdin-File-ID: 33\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: actions.py:29
 msgid "Turn MAIANA TX on"
-msgstr ""
+msgstr "Ota MAIANA TX käyttöön"
 
 #: actions.py:30
 msgid "Turn MAIANA TX off"
-msgstr ""
+msgstr "Poista MAIANA TX käytöstä"
 
 #: data/openplotter-maiana.desktop:3
 msgid "MAIANA AIS"
@@ -83,7 +83,7 @@ msgstr "EPÄONNISTUNUT: "
 
 #: maianaPostInstall.py:30
 msgid "Installing python packages..."
-msgstr ""
+msgstr "Asennetaan python-paketteja..."
 
 #: maianaPostInstall.py:33 maianaPostInstall.py:42 maianaPostInstall.py:48
 #: maianaPreUninstall.py:32 maianaPreUninstall.py:38
@@ -100,7 +100,7 @@ msgstr "Asetetaan versio..."
 
 #: maianaPreUninstall.py:29
 msgid "Stopping OpenPlotter MAIANA service..."
-msgstr ""
+msgstr "Pysäytetään OpenPlotter MAIANA palvelu..."
 
 #: maianaPreUninstall.py:35
 msgid "Removing version..."
@@ -124,7 +124,7 @@ msgstr "Hyväksy"
 
 #: openplotterMaiana.py:55
 msgid "Reconnect"
-msgstr ""
+msgstr "Yhdistä Uudelleen"
 
 #: openplotterMaiana.py:58
 msgid "MAIANA Signal K connection"
@@ -148,7 +148,7 @@ msgstr " Paina \"Hyväksy\" ja sitten \"Päivitä \"."
 
 #: openplotterMaiana.py:173
 msgid " Try \"Reconnect\"."
-msgstr ""
+msgstr " Yritä \"yhdistä uudelleen\"."
 
 #: openplotterMaiana.py:176
 msgid " Press \"Refresh\"."
@@ -348,7 +348,7 @@ msgstr "Väärä vasensiirros"
 
 #: openplotterMaiana.py:591
 msgid "Download firmware"
-msgstr ""
+msgstr "Lataa uusin laiteohjelmisto"
 
 #: openplotterMaiana.py:594
 msgid "Update firmware"
@@ -368,24 +368,20 @@ msgstr "Kaikki tiedostot"
 
 #: openplotterMaiana.py:622
 msgid "MCU type mismatch: "
-msgstr ""
+msgstr "MCU tyyppi ei täsmää: "
 
 #: openplotterMaiana.py:629
 msgid "Hardware revision mismatch: "
-msgstr ""
+msgstr "Laitteiston versio ei täsmää: "
 
 #: openplotterMaiana.py:632
 msgid "Error processing file: "
-msgstr ""
+msgstr "Virhe käsiteltäessä tiedostoa: "
 
 #: openplotterMaiana.py:636
-msgid ""
-"Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n"
-"\n"
+msgid "Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n\n"
 "Do you want to go ahead?"
-msgstr ""
-"MAIANA-laitteen firmware päivitetään, älä katkaise yhteyttä siihen tai kajoa siihen päivityksen aikana.\n"
-"\n"
+msgstr "MAIANA-laitteen firmware päivitetään, älä katkaise yhteyttä siihen tai kajoa siihen päivityksen aikana.\n\n"
 "Haluatko mennä eteenpäin?"
 
 #: openplotterMaiana.py:637
@@ -410,7 +406,7 @@ msgstr "MAIANA AIS antennin läheisyydessä saattaa olla sähkömagneettisia hä
 
 #: startup.py:29
 msgid "Starting MAIANA transponder..."
-msgstr ""
+msgstr "Käynnistetään MAIANA-transponderia..."
 
 #: startup.py:49
 msgid "Checking MAIANA transponder..."
@@ -426,15 +422,15 @@ msgstr "MAIANA laite"
 
 #: startup.py:95
 msgid "device settings OK"
-msgstr ""
+msgstr "laitteen asetukset OK"
 
 #: startup.py:99
 msgid "check device settings"
-msgstr ""
+msgstr "tarkista laitteen asetukset"
 
 #: startup.py:108
 msgid "NMEA 0183 over TCP (10110) interface is disabled. Check Signal K server settings"
-msgstr ""
+msgstr "NMEA 0183 TCP:n (10110) käyttöliittymän yli on poistettu käytöstä. Tarkista Signal K -palvelimen asetukset"
 
 #: startup.py:119
 msgid "Access to Signal K server validated"
@@ -442,8 +438,9 @@ msgstr "Pääsy Signal K palvelimeen vahvistettu"
 
 #: startup.py:127 startup.py:136
 msgid "running"
-msgstr ""
+msgstr "käynnissä"
 
 #: startup.py:131 startup.py:140
 msgid "not running"
-msgstr ""
+msgstr "ei käynnissä"
+

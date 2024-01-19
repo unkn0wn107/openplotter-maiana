@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2023-02-08 21:05+0100\n"
-"PO-Revision-Date: 2023-02-09 19:26+0100\n"
+"PO-Revision-Date: 2023-07-28 18:01\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -13,20 +13,20 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: de\n"
 "X-Crowdin-File: openplotter-maiana.po\n"
 "X-Crowdin-File-ID: 33\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: actions.py:29
 msgid "Turn MAIANA TX on"
-msgstr ""
+msgstr "MAIANA TX einschalten"
 
 #: actions.py:30
 msgid "Turn MAIANA TX off"
-msgstr ""
+msgstr "MAIANA TX ausschalten"
 
 #: data/openplotter-maiana.desktop:3
 msgid "MAIANA AIS"
@@ -83,7 +83,7 @@ msgstr "FEHLGESCHLAGEN: "
 
 #: maianaPostInstall.py:30
 msgid "Installing python packages..."
-msgstr ""
+msgstr "Python-Pakete werden installiert..."
 
 #: maianaPostInstall.py:33 maianaPostInstall.py:42 maianaPostInstall.py:48
 #: maianaPreUninstall.py:32 maianaPreUninstall.py:38
@@ -100,7 +100,7 @@ msgstr "Setze Version..."
 
 #: maianaPreUninstall.py:29
 msgid "Stopping OpenPlotter MAIANA service..."
-msgstr ""
+msgstr "Stoppe OpenPlotter MAIANA Service..."
 
 #: maianaPreUninstall.py:35
 msgid "Removing version..."
@@ -124,7 +124,7 @@ msgstr "Bestätigen"
 
 #: openplotterMaiana.py:55
 msgid "Reconnect"
-msgstr ""
+msgstr "Neu verbinden"
 
 #: openplotterMaiana.py:58
 msgid "MAIANA Signal K connection"
@@ -148,7 +148,7 @@ msgstr " Drücken Sie \"Bestätigen\" und dann \"Aktualisieren\"."
 
 #: openplotterMaiana.py:173
 msgid " Try \"Reconnect\"."
-msgstr ""
+msgstr " Versuchen Sie \"Erneut verbinden\"."
 
 #: openplotterMaiana.py:176
 msgid " Press \"Refresh\"."
@@ -348,7 +348,7 @@ msgstr "Ungültiger Backbord Versatz"
 
 #: openplotterMaiana.py:591
 msgid "Download firmware"
-msgstr ""
+msgstr "Firmware herunterladen"
 
 #: openplotterMaiana.py:594
 msgid "Update firmware"
@@ -368,24 +368,20 @@ msgstr "Alle Dateien"
 
 #: openplotterMaiana.py:622
 msgid "MCU type mismatch: "
-msgstr ""
+msgstr "Unstimmigkeit des MCU-Typs: "
 
 #: openplotterMaiana.py:629
 msgid "Hardware revision mismatch: "
-msgstr ""
+msgstr "Hardware-Revision stimmt nicht überein: "
 
 #: openplotterMaiana.py:632
 msgid "Error processing file: "
-msgstr ""
+msgstr "Fehler beim Verarbeiten der Datei: "
 
 #: openplotterMaiana.py:636
-msgid ""
-"Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n"
-"\n"
+msgid "Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n\n"
 "Do you want to go ahead?"
-msgstr ""
-"Ihre MAIANA-Geräte-Firmware wird aktualisiert, bitte trennen Sie sie nicht oder tamper sie während des Updates.\n"
-"\n"
+msgstr "Ihre MAIANA-Geräte-Firmware wird aktualisiert, bitte trennen Sie sie nicht oder tamper sie während des Updates.\n\n"
 "Möchten Sie fortfahren?"
 
 #: openplotterMaiana.py:637
@@ -410,7 +406,7 @@ msgstr "Es kann zu elektromagnetischen Störungen in der Nähe der MAIANA AIS An
 
 #: startup.py:29
 msgid "Starting MAIANA transponder..."
-msgstr ""
+msgstr "Starte MAIANA Transponder..."
 
 #: startup.py:49
 msgid "Checking MAIANA transponder..."
@@ -426,15 +422,15 @@ msgstr "MAIANA Gerät"
 
 #: startup.py:95
 msgid "device settings OK"
-msgstr ""
+msgstr "Geräteeinstellungen OK"
 
 #: startup.py:99
 msgid "check device settings"
-msgstr ""
+msgstr "prüfe die Geräteeinstellungen"
 
 #: startup.py:108
 msgid "NMEA 0183 over TCP (10110) interface is disabled. Check Signal K server settings"
-msgstr ""
+msgstr "NMEA 0183 über die TCP (10110) Schnittstelle ist deaktiviert. Überprüfe Signal K Server Einstellungen"
 
 #: startup.py:119
 msgid "Access to Signal K server validated"
@@ -442,8 +438,9 @@ msgstr "Zugriff auf Signal K Server geprüft"
 
 #: startup.py:127 startup.py:136
 msgid "running"
-msgstr ""
+msgstr "läuft"
 
 #: startup.py:131 startup.py:140
 msgid "not running"
-msgstr ""
+msgstr "läuft nicht"
+

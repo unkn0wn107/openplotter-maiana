@@ -64,50 +64,87 @@ class Check():
 			if not black: black = msg
 			else: black+= ' | '+msg
 
-		#check devie¡ce and server settings
-		if device:
-			settingsOK = False
-			nmeaOK = True
-			try:
-				setting_file = self.platform.skDir+'/settings.json'
-				with open(setting_file) as data_file:
-					data = ujson.load(data_file)
-			except: data = {}
-			if 'pipedProviders' in data: data2 = data['pipedProviders']
-			else: data2 = []
-			for i in data2:
-				enabled = ''
-				dataType = ''
-				baudrate = ''
-				connectionType = ''
-				suppress0183event = False
+		#check device and server settings
+		try:
+			setting_file = self.platform.skDir+'/settings.json'
+			with open(setting_file) as data_file:
+				data = ujson.load(data_file)
+		except: data = {}
+		if 'pipedProviders' in data: data2 = data['pipedProviders']
+		else: data2 = []
+
+		#check maianaCommand connection
+		commands = False
+		for i in data2:
+			if i['id'] == 'maianaCommand':
+				commands = True
+				errors = False
 				try:
-					dataSubOptions = i['pipeElements'][0]['options']['subOptions']
-					if device in dataSubOptions['device']:
-						enabled = i['enabled']
-						dataType = i['pipeElements'][0]['options']['type']
-						baudrate = dataSubOptions['baudrate']
-						connectionType = dataSubOptions['type']
-						if 'suppress0183event' in dataSubOptions: suppress0183event = dataSubOptions['suppress0183event']
-						if enabled and connectionType == 'serial' and baudrate == 38400 and dataType == 'NMEA0183' and not suppress0183event: settingsOK = True
-				except: pass			
-				if settingsOK:
-					msg = _('device settings OK')
-					if not black: black = msg
-					else: black+= ' | '+msg
-				else:
-					msg = _('check device settings')
+					if not i['enabled']: errors = True
+					if i['pipeElements'][0]['options']['type'] != "NMEA0183": errors = True
+					if i['pipeElements'][0]['options']['subOptions']['type'] != "udp": errors = True
+					if i['pipeElements'][0]['options']['subOptions']['port'] != "40440": errors = True
+					if i['pipeElements'][0]['options']['subOptions']['sentenceEvent'] != "maianaCommand": errors = True
+				except: errors = True
+				if errors:
+					msg = _('Signal K connection "maianaCommand" has errors. Reinstall "MAIANA AIS transponder" app.')
 					if not red: red = msg
 					else: red+= '\n    '+msg
+				else:
+					msg = _('maianaCommand connection OK')
+					if not black: black = msg
+					else: black+= ' | '+msg
+		if not commands:
+			msg = _('Signal K connection "maianaCommand" does not exists. Reinstall "MAIANA AIS transponder" app.')
+			if not red: red = msg
+			else: red+= '\n    '+msg
 
-			if 'interfaces' in data: data2 = data['interfaces']
-			else: data2 = []
-			if 'nmea-tcp' in data2:
-				if not data2['nmea-tcp']: nmeaOK = False
-			if not nmeaOK:
-				msg = _('NMEA 0183 over TCP (10110) interface is disabled. Check Signal K server settings')
+		##check maiana connection
+		if device:
+			deviceOK = False
+			errors = False
+			for i in data2:
+				try:
+					if device in i['pipeElements'][0]['options']['subOptions']['device']:
+						deviceOK = True
+						if not i['enabled']: errors = True
+						if i['pipeElements'][0]['options']['subOptions']['type'] != "serial": errors = True
+						if i['pipeElements'][0]['options']['subOptions']['baudrate'] != 38400: errors = True
+						if i['pipeElements'][0]['options']['type'] != 'NMEA0183': errors = True
+						if 'suppress0183event' in i['pipeElements'][0]['options']['subOptions']:
+							if not i['pipeElements'][0]['options']['subOptions']['suppress0183event']: errors = True
+						if 'toStdout' in i['pipeElements'][0]['options']['subOptions']:
+							if not "maianaCommand" in i['pipeElements'][0]['options']['subOptions']['toStdout']: errors = True
+						else: errors = True
+				except: pass
+				if errors:
+					msg = _('MAIANA Signal K connection has errors. Please try again.')
+					self.conf.set('MAIANA', 'device', '')
+					if not red: red = msg
+					else: red+= '\n    '+msg
+				else:
+					msg = _('MAIANA connection OK')
+					if not black: black = msg
+					else: black+= ' | '+msg
+			if not deviceOK:
+				msg = _('MAIANA Signal K connection does not exists.')
 				if not red: red = msg
 				else: red+= '\n    '+msg
+
+		#check NMEA 0183 over TCP (10110) interface
+		nmeaOK = True
+		if 'interfaces' in data: data2 = data['interfaces']
+		else: data2 = []
+		if 'nmea-tcp' in data2:
+			if not data2['nmea-tcp']: nmeaOK = False
+		if not nmeaOK:
+			msg = _('NMEA 0183 over TCP (10110) interface is disabled. Check Signal K server settings')
+			if not red: red = msg
+			else: red+= '\n    '+msg
+		else:
+			msg = _('NMEA 0183 over TCP (10110) interface OK')
+			if not black: black = msg
+			else: black+= ' | '+msg
 
 		#access
 		skConnections = connections.Connections('MAIANA')
