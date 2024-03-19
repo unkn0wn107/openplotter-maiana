@@ -20,7 +20,6 @@ import wx.richtext as rt
 from openplotterSettings import conf
 from openplotterSettings import language
 from openplotterSettings import platform
-from openplotterSignalkInstaller import connections
 from .version import version
 
 class MyFrame(wx.Frame):
@@ -52,11 +51,6 @@ class MyFrame(wx.Frame):
 		if not self.platform.isInstalled('openplotter-doc'): self.toolbar1.EnableTool(101,False)
 		toolSettings = self.toolbar1.AddTool(102, _('Settings'), wx.Bitmap(self.currentdir+"/data/settings.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolSettings, toolSettings)
-		self.toolbar1.AddSeparator()
-		aproveSK = self.toolbar1.AddTool(105, _('Approve'), wx.Bitmap(self.currentdir+"/data/sk.png"))
-		self.Bind(wx.EVT_TOOL, self.onAproveSK, aproveSK)
-		connectionSK = self.toolbar1.AddTool(106, _('Reconnect'), wx.Bitmap(self.currentdir+"/data/sk.png"))
-		self.Bind(wx.EVT_TOOL, self.onConnectionSK, connectionSK)
 		self.toolbar1.AddSeparator()
 		self.connInit = _('MAIANA Signal K connection')
 		self.SKconn = wx.ComboBox(self.toolbar1, 103, self.connInit, choices=[], size=(250,-1), style=wx.CB_DROPDOWN)
@@ -122,16 +116,6 @@ class MyFrame(wx.Frame):
 		subprocess.call(['pkill', '-f', 'openplotter-settings'])
 		subprocess.Popen('openplotter-settings')
 
-	def onAproveSK(self,e):
-		if self.platform.skPort: 
-			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/security/access/requests'
-			webbrowser.open(url, new=2)
-
-	def onConnectionSK(self,e):
-		self.conf.set('MAIANA', 'href', '')
-		self.conf.set('MAIANA', 'token', '')
-		self.onRead()
-
 	def onShowSK(self, event):
 		if self.platform.skPort: 
 			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/connections/-'
@@ -155,7 +139,6 @@ class MyFrame(wx.Frame):
 		self.logger.Clear()
 		self.logger2.Clear()
 		self.device = self.conf.get('MAIANA', 'device')
-		self.toolbar1.EnableTool(105,False)
 		self.toolbar2.EnableTool(202,False)
 		self.toolbar3.EnableTool(302,False)
 		self.toolbar3.EnableTool(303,False)
@@ -165,24 +148,6 @@ class MyFrame(wx.Frame):
 		availableIDs = []
 		selected = ''
 		self.tx = False
-
-		skConnections = connections.Connections('MAIANA')
-		result = skConnections.checkConnection()
-		if result[0] == 'pending':
-			self.toolbar1.EnableTool(105,True)
-			self.ShowStatusBarYELLOW(result[1]+_(' Press "Approve" and then "Refresh".'))
-			return
-		elif result[0] == 'error':
-			self.ShowStatusBarRED(result[1]+_(' Try "Reconnect".'))
-			return
-		elif result[0] == 'repeat':
-			self.ShowStatusBarYELLOW(result[1]+_(' Press "Refresh".'))
-			return
-		elif result[0] == 'permissions':
-			self.ShowStatusBarYELLOW(result[1])
-			return
-		elif result[0] == 'approved':
-			self.ShowStatusBarGREEN(result[1])
 
 		try:
 			setting_file = self.platform.skDir+'/settings.json'

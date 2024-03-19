@@ -56,15 +56,6 @@ def main():
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
-	print(_('Checking access to Signal K server...'))
-	try:
-		from openplotterSignalkInstaller import connections
-		skConnections = connections.Connections('MAIANA')
-		result = skConnections.checkConnection()
-		if result[1]: print(result[1])
-		else: print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
-
 	print(_('Setting version...'))
 	try:
 		conf2.set('APPS', 'maiana', version)

@@ -20,6 +20,7 @@ from openplotterSettings import conf
 from openplotterSettings import platform
 from openplotterSettings import language
 from websocket import create_connection
+from openplotterSignalkInstaller import connections
 
 def main():
 	platform2 = platform.Platform()
@@ -28,7 +29,8 @@ def main():
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	package = 'openplotter-maiana'
 	language.Language(currentdir, package, currentLanguage)
-	token = conf2.get('MAIANA', 'token')
+	skConnections = connections.Connections('MAIANA')
+	token = skConnections.token
 	device = conf2.get('MAIANA', 'device')
 	if conf2.get('GENERAL', 'debug') == 'yes': debug = True
 	else: debug = False
