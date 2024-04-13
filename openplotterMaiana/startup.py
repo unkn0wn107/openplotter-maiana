@@ -20,23 +20,14 @@ from openplotterSettings import language
 from openplotterSettings import platform
 from openplotterSignalkInstaller import connections
 
-class Start(): 
+class Start():
 	def __init__(self, conf, currentLanguage):
-		self.conf = conf
-		currentdir = os.path.dirname(os.path.abspath(__file__))
-		language.Language(currentdir,'openplotter-maiana',currentLanguage)
-		
-		self.initialMessage = _('Starting MAIANA transponder...')
+		self.initialMessage = ''
 
-	def start(self): 
-		green = '' 
-		black = '' 
-		red = '' 
-
-		subprocess.call(['pkill', '-f', 'openplotter-maiana-read'])
-		subprocess.Popen('openplotter-maiana-read')
-		time.sleep(1)
-
+	def start(self):
+		green = ''
+		black = ''
+		red = ''
 		return {'green': green,'black': black,'red': red}
 
 class Check():
@@ -157,24 +148,25 @@ class Check():
 			if not black: black = msg
 			else: black+= ' | '+msg
 
-		# check service
-		test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
-		if device and (result[0] == 'approved' or result[0] == 'validated'):
-			if 'openplotter-maiana-read' in test: 
-				msg = _('running')
+		#service
+		if device and result[0] == 'validated':
+			try:
+				subprocess.check_output(['systemctl', 'is-active', 'openplotter-maiana-read.service']).decode(sys.stdin.encoding)
+				msg = _('service running')
 				if not green: green = msg
 				else: green+= ' | '+msg
-			else:
-				msg = _('not running')
+			except: 
+				msg = _('service not running')
 				if red: red += '\n   '+msg
 				else: red = msg
 		else:
-			if 'openplotter-maiana-read' in test: 
-				msg = _('running')
+			try:
+				subprocess.check_output(['systemctl', 'is-active', 'openplotter-maiana-read.service']).decode(sys.stdin.encoding)
+				msg = _('service running')
 				if red: red += '\n   '+msg
 				else: red = msg
-			else:
-				msg = _('not running')
+			except: 
+				msg = _('service not running')
 				if not black: black = msg
 				else: black+= ' | '+msg
 

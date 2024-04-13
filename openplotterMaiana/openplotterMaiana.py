@@ -122,8 +122,11 @@ class MyFrame(wx.Frame):
 			webbrowser.open(url, new=2)
 
 	def restartRead(self):
-		subprocess.call(['pkill','-f','openplotter-maiana-read'])
-		subprocess.Popen('openplotter-maiana-read')
+		subprocess.call([self.platform.admin, 'python3', self.currentdir+'/service.py', 'enable'])
+		time.sleep(1)
+
+	def stopRead(self):
+		subprocess.call([self.platform.admin, 'python3', self.currentdir+'/service.py', 'disable'])
 		time.sleep(1)
 
 	def onRead(self):
@@ -191,12 +194,10 @@ class MyFrame(wx.Frame):
 
 		if deviceOld != self.device:
 			if self.device: self.restartRead()
-			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+			else: self.stopRead()
 		else:
-			if self.device:
-				test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
-				if not 'openplotter-maiana-read' in test: self.restartRead()
-			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+			if self.device: self.restartRead()
+			else: self.stopRead()
 
 		if self.device:
 			self.sock.sendto(b'sys?\r\n',(self.UDP_IP,self.UDP_PORT))
@@ -213,7 +214,7 @@ class MyFrame(wx.Frame):
 					ts = datetime.datetime.utcnow().timestamp()
 					timestamp = data['hardwareRevision']['timestamp']
 					ts2 = time.mktime(datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%fZ").timetuple())
-					if ts - ts2 > 3: 
+					if ts - ts2 > 5: 
 						self.ShowStatusBarRED(_('Cannot connect with the device, try again by pressing "Refresh"'))
 						return
 					hardwareRevision = data['hardwareRevision']['value']
@@ -424,12 +425,10 @@ class MyFrame(wx.Frame):
 
 		if deviceOld != self.device:
 			if self.device: self.restartRead()
-			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+			else: self.stopRead()
 		else:
-			if self.device:
-				test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
-				if not 'openplotter-maiana-read' in test: self.restartRead()
-			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+			if self.device: self.restartRead()
+			else: self.stopRead()
 
 		self.onRead()
 

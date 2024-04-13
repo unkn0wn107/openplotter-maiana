@@ -28,12 +28,6 @@ def main():
 	language.Language(currentdir, package, currentLanguage)
 	platform2 = platform.Platform()
 
-	print(_('Stopping OpenPlotter MAIANA service...'))
-	try:
-		subprocess.call(['pkill','-f','openplotter-maiana-read'])
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
-
 	print(_('Removing connection to Signal K server for MAIANA commands...'))
 	try:
 		data = {}
@@ -54,6 +48,14 @@ def main():
 					subprocess.call(['systemctl', 'stop', 'signalk.socket'])
 					subprocess.call(['systemctl', 'start', 'signalk.socket'])
 					subprocess.call(['systemctl', 'start', 'signalk.service'])
+		print(_('DONE'))
+	except Exception as e: print(_('FAILED: ')+str(e))
+
+	print(_('Removing services...'))
+	try:
+		subprocess.call(['systemctl', 'disable', 'openplotter-maiana-read'])
+		subprocess.call(['systemctl', 'stop', 'openplotter-maiana-read'])
+		subprocess.call(['systemctl', 'daemon-reload'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
