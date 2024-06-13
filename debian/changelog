@@ -1,3 +1,15 @@
+openplotter-maiana (4.1.0-stable) bookworm; urgency=medium
+
+  * stable
+
+ -- Sailoog <info@sailoog.com>  Thu, 13 Jun 2024 19:36:30 +0200
+
+openplotter-maiana (4.0.16-beta) bookworm; urgency=medium
+
+  * beta
+
+ -- Sailoog <info@sailoog.com>  Sun, 14 Jan 2024 11:57:22 +0100
+
 openplotter-maiana (3.1.6-stable) bullseye; urgency=medium
 
   * Add Signal K reconnection option
