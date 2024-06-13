@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2023-02-08 21:05+0100\n"
-"PO-Revision-Date: 2023-05-17 10:55\n"
+"POT-Creation-Date: 2024-05-20 11:49+0200\n"
+"PO-Revision-Date: 2024-06-13 19:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
@@ -13,20 +13,20 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: ca\n"
 "X-Crowdin-File: openplotter-maiana.po\n"
 "X-Crowdin-File-ID: 33\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: actions.py:29
 msgid "Turn MAIANA TX on"
-msgstr ""
+msgstr "Encén MAIANA TX"
 
 #: actions.py:30
 msgid "Turn MAIANA TX off"
-msgstr ""
+msgstr "Apaga MAIANA TX"
 
 #: data/openplotter-maiana.desktop:3
 msgid "MAIANA AIS"
@@ -76,371 +76,383 @@ msgstr "No es pot iniciar la transferència, reinicia la unitat i torna a provar
 msgid "Starting transfer"
 msgstr "Iniciant la transferència"
 
-#: fwupdate.py:136 maianaPostInstall.py:34 maianaPostInstall.py:43
-#: maianaPostInstall.py:49 maianaPreUninstall.py:33 maianaPreUninstall.py:39
+#: fwupdate.py:136 maianaPostInstall.py:57 maianaPostInstall.py:66
+#: maianaPostInstall.py:72 maianaPreUninstall.py:52 maianaPreUninstall.py:60
+#: maianaPreUninstall.py:66
 msgid "FAILED: "
 msgstr "ERROR: "
 
-#: maianaPostInstall.py:30
-msgid "Installing python packages..."
-msgstr ""
+#: maianaPostInstall.py:32
+msgid "Adding connection to Signal K server for MAIANA commands..."
+msgstr "Afegint connexió al servidor Signal K per comandaments de MAIANA..."
 
-#: maianaPostInstall.py:33 maianaPostInstall.py:42 maianaPostInstall.py:48
-#: maianaPreUninstall.py:32 maianaPreUninstall.py:38
+#: maianaPostInstall.py:56 maianaPostInstall.py:65 maianaPostInstall.py:71
+#: maianaPreUninstall.py:51 maianaPreUninstall.py:59 maianaPreUninstall.py:65
 msgid "DONE"
 msgstr "FET"
 
-#: maianaPostInstall.py:36
-msgid "Checking access to Signal K server..."
-msgstr "Comprovant accés al servidor Signal K..."
+#: maianaPostInstall.py:59
+msgid "Creating services..."
+msgstr "Creant serveis..."
 
-#: maianaPostInstall.py:45
+#: maianaPostInstall.py:68
 msgid "Setting version..."
 msgstr "Establint la versió..."
 
-#: maianaPreUninstall.py:29
-msgid "Stopping OpenPlotter MAIANA service..."
-msgstr ""
+#: maianaPreUninstall.py:31
+msgid "Removing connection to Signal K server for MAIANA commands..."
+msgstr "Eliminant connexió al servidor Signal K per comandaments de MAIANA..."
 
-#: maianaPreUninstall.py:35
+#: maianaPreUninstall.py:54
+msgid "Removing services..."
+msgstr "Eliminant serveis..."
+
+#: maianaPreUninstall.py:62
 msgid "Removing version..."
 msgstr "Eliminant versió..."
 
-#: openplotterMaiana.py:37
+#: openplotterMaiana.py:39
 msgid "MAIANA AIS transponder"
 msgstr "Transponedor d'AIS MAIANA"
 
-#: openplotterMaiana.py:47
+#: openplotterMaiana.py:49
 msgid "Help"
 msgstr "Ajuda"
 
-#: openplotterMaiana.py:50 openplotterMaiana.py:69
+#: openplotterMaiana.py:52 openplotterMaiana.py:66
 msgid "Settings"
 msgstr "Preferències"
 
-#: openplotterMaiana.py:53
-msgid "Approve"
-msgstr "Aprova"
-
 #: openplotterMaiana.py:55
-msgid "Reconnect"
-msgstr ""
-
-#: openplotterMaiana.py:58
 msgid "MAIANA Signal K connection"
 msgstr "Connexió Signal K de MAIANA"
 
-#: openplotterMaiana.py:62
+#: openplotterMaiana.py:59
 msgid "Connections"
 msgstr "Connexions"
 
-#: openplotterMaiana.py:70
+#: openplotterMaiana.py:67
 msgid "Firmware"
 msgstr "Firmware"
 
-#: openplotterMaiana.py:143
+#: openplotterMaiana.py:133
 msgid "Reading MAIANA device settings..."
 msgstr "Llegint les preferències del dispositiu MAIANA..."
 
-#: openplotterMaiana.py:170
-msgid " Press \"Approve\" and then \"Refresh\"."
-msgstr " Prem \"Aprova\" i després \"Actualitza\"."
-
-#: openplotterMaiana.py:173
-msgid " Try \"Reconnect\"."
-msgstr ""
-
-#: openplotterMaiana.py:176
-msgid " Press \"Refresh\"."
-msgstr " Prem \"Actualitza\"."
-
-#: openplotterMaiana.py:222
+#: openplotterMaiana.py:193
 msgid "Select the Signal K connection for the MAIANA device"
 msgstr "Selecciona la connexió Signal K per al dispositiu MAIANA"
 
-#: openplotterMaiana.py:250 openplotterMaiana.py:278 openplotterMaiana.py:281
-msgid "Cannot connect with the device, try again"
-msgstr "No es pot conectar amb el dispositiu, prova una altra vegada"
+#: openplotterMaiana.py:218 openplotterMaiana.py:245 openplotterMaiana.py:248
+msgid "Cannot connect with the device, try again by pressing \"Refresh\""
+msgstr "No es pot connectar amb el dispositiu, prova de nou prement \"Refrescar\""
 
-#: openplotterMaiana.py:256 openplotterMaiana.py:259
+#: openplotterMaiana.py:223 openplotterMaiana.py:226
 msgid "The hardware version of your MAIANA device is too old"
 msgstr "La versió de maquinari del teu MAIANA és massa antiga"
 
-#: openplotterMaiana.py:264 openplotterMaiana.py:267 openplotterMaiana.py:270
+#: openplotterMaiana.py:231 openplotterMaiana.py:234 openplotterMaiana.py:237
 msgid "The firmware version of your MAIANA device is too old"
 msgstr "La versió de microprogramari del teu MAIANA és massa antiga"
 
-#: openplotterMaiana.py:283
+#: openplotterMaiana.py:250
 msgid "Done"
 msgstr "Fet"
 
-#: openplotterMaiana.py:286
+#: openplotterMaiana.py:253
 msgid "Hardware revision"
 msgstr "Revisió de maquinari"
 
-#: openplotterMaiana.py:291
+#: openplotterMaiana.py:258
 msgid "Firmware revision"
 msgstr "Revisió de programari"
 
-#: openplotterMaiana.py:295
+#: openplotterMaiana.py:262
 msgid "Type of MCU"
 msgstr "Tipus de MCU"
 
-#: openplotterMaiana.py:300
+#: openplotterMaiana.py:267
 msgid "Serial number"
 msgstr "Número de sèrie"
 
-#: openplotterMaiana.py:305
+#: openplotterMaiana.py:272
 msgid "Transmitter hardware module"
 msgstr "Mòdul de maquinari emisor"
 
-#: openplotterMaiana.py:310
+#: openplotterMaiana.py:277
 msgid "present"
 msgstr "present"
 
-#: openplotterMaiana.py:313
+#: openplotterMaiana.py:280
 msgid "not present"
 msgstr "no present"
 
-#: openplotterMaiana.py:316
+#: openplotterMaiana.py:283
 msgid "Hardware TX switch"
 msgstr "Interruptor TX de maquinari"
 
-#: openplotterMaiana.py:321 openplotterMaiana.py:333
+#: openplotterMaiana.py:288 openplotterMaiana.py:300
 msgid "ON"
 msgstr "ACTIVAT"
 
-#: openplotterMaiana.py:324 openplotterMaiana.py:338
+#: openplotterMaiana.py:291 openplotterMaiana.py:305
 msgid "OFF"
 msgstr "DESACTIVAT"
 
-#: openplotterMaiana.py:327 openplotterMaiana.py:473
+#: openplotterMaiana.py:294 openplotterMaiana.py:461
 msgid "Software TX switch"
 msgstr "Interruptor TX de programari"
 
-#: openplotterMaiana.py:342
+#: openplotterMaiana.py:309
 msgid "Station data"
 msgstr "Dades de l'estació"
 
-#: openplotterMaiana.py:347
+#: openplotterMaiana.py:314
 msgid "provided"
 msgstr "proveït"
 
-#: openplotterMaiana.py:350
+#: openplotterMaiana.py:317
 msgid "not provided"
 msgstr "no proveït"
 
-#: openplotterMaiana.py:353
+#: openplotterMaiana.py:320
 msgid "Status"
 msgstr "Estat"
 
-#: openplotterMaiana.py:358
+#: openplotterMaiana.py:325
 msgid "transmitting"
 msgstr "emetent"
 
-#: openplotterMaiana.py:361
+#: openplotterMaiana.py:328
 msgid "not transmitting"
 msgstr "no emetent"
 
-#: openplotterMaiana.py:364
+#: openplotterMaiana.py:331
 msgid "Channel A latest transmitted message"
 msgstr "Últim missatge emès al canal A"
 
-#: openplotterMaiana.py:370 openplotterMaiana.py:383
+#: openplotterMaiana.py:337 openplotterMaiana.py:350
 msgid "Type"
 msgstr "Tipus"
 
-#: openplotterMaiana.py:374 openplotterMaiana.py:386
+#: openplotterMaiana.py:341 openplotterMaiana.py:353
 msgid "Time"
 msgstr "Temps"
 
-#: openplotterMaiana.py:377
+#: openplotterMaiana.py:344
 msgid "Channel B latest transmitted message"
 msgstr "Últim missatge emès al canal B"
 
-#: openplotterMaiana.py:389
+#: openplotterMaiana.py:356
 msgid "Channel A noise floor"
 msgstr "Llindar de soroll del canal A"
 
-#: openplotterMaiana.py:394
+#: openplotterMaiana.py:361
 msgid "Channel B noise floor"
 msgstr "Llindar de soroll del canal B"
 
-#: openplotterMaiana.py:451
+#: openplotterMaiana.py:421
+msgid "Restarting Signal K server... "
+msgstr "Reiniciant el servidor Signal K... "
+
+#: openplotterMaiana.py:424
+msgid "Signal K server restarted"
+msgstr "Servidor Signal K reiniciat"
+
+#: openplotterMaiana.py:439
 msgid "MMSI"
 msgstr "MMSI"
 
-#: openplotterMaiana.py:453
+#: openplotterMaiana.py:441
 msgid "Vessel name"
 msgstr "Nom de l'embarcació"
 
-#: openplotterMaiana.py:455
+#: openplotterMaiana.py:443
 msgid "Call sign"
 msgstr "Call Sign"
 
-#: openplotterMaiana.py:457
+#: openplotterMaiana.py:445
 msgid "Vessel type"
 msgstr "Tipus d'embarcació"
 
-#: openplotterMaiana.py:459
+#: openplotterMaiana.py:447
 msgid "LOA"
 msgstr "Eslora"
 
-#: openplotterMaiana.py:461
+#: openplotterMaiana.py:449
 msgid "Beam"
 msgstr "Mànega"
 
-#: openplotterMaiana.py:463
+#: openplotterMaiana.py:451
 msgid "Port Offset"
 msgstr "Distancia de babor"
 
-#: openplotterMaiana.py:465
+#: openplotterMaiana.py:453
 msgid "Bow Offset"
 msgstr "Distància de la proa"
 
-#: openplotterMaiana.py:467
+#: openplotterMaiana.py:455
 msgid "Units: meters"
 msgstr "Unitats: metres"
 
-#: openplotterMaiana.py:470 openplotterMaiana.py:587
+#: openplotterMaiana.py:458 openplotterMaiana.py:574
 msgid "Refresh"
 msgstr "Actualitza"
 
-#: openplotterMaiana.py:476
+#: openplotterMaiana.py:464
 msgid "Detect noise"
 msgstr "Detectar soroll"
 
-#: openplotterMaiana.py:479
+#: openplotterMaiana.py:467
 msgid "Save station data"
 msgstr "Desa les dades de l'estació"
 
-#: openplotterMaiana.py:526
+#: openplotterMaiana.py:513
 msgid "Invalid MMSI"
 msgstr "MMSI no vàlid"
 
-#: openplotterMaiana.py:532
+#: openplotterMaiana.py:519
 msgid "Invalid vessel name"
 msgstr "Nom de l'embarcació no vàlid"
 
-#: openplotterMaiana.py:537
+#: openplotterMaiana.py:524
 msgid "Invalid call sign"
 msgstr "Call Sign no vàlid"
 
-#: openplotterMaiana.py:546
+#: openplotterMaiana.py:533
 msgid "Invalid vessel type"
 msgstr "Tipus d'embarcació no vàlid"
 
-#: openplotterMaiana.py:551
+#: openplotterMaiana.py:538
 msgid "Invalid LOA"
 msgstr "Eslora no vàlida"
 
-#: openplotterMaiana.py:556
+#: openplotterMaiana.py:543
 msgid "Invalid Beam"
 msgstr "Mànega no vàlida"
 
-#: openplotterMaiana.py:561
+#: openplotterMaiana.py:548
 msgid "Invalid bow offset"
 msgstr "Distància fins a proa no vàlida"
 
-#: openplotterMaiana.py:566
+#: openplotterMaiana.py:553
 msgid "Invalid port offset"
 msgstr "Distància fins a babor no vàlida"
 
-#: openplotterMaiana.py:591
+#: openplotterMaiana.py:578
 msgid "Download firmware"
-msgstr ""
+msgstr "Descarregar firmware"
 
-#: openplotterMaiana.py:594
+#: openplotterMaiana.py:581
 msgid "Update firmware"
 msgstr "Actualitza microprogramari"
 
-#: openplotterMaiana.py:611
+#: openplotterMaiana.py:598
 msgid "Choose a file"
 msgstr "Selecciona un fitxer"
 
-#: openplotterMaiana.py:611
+#: openplotterMaiana.py:598
 msgid "bin files"
 msgstr "fitxers binaris"
 
-#: openplotterMaiana.py:611
+#: openplotterMaiana.py:598
 msgid "All files"
 msgstr "Tots els fitxers"
 
-#: openplotterMaiana.py:622
+#: openplotterMaiana.py:609
 msgid "MCU type mismatch: "
-msgstr ""
+msgstr "Desajustament entre tipus de MCU: "
 
-#: openplotterMaiana.py:629
+#: openplotterMaiana.py:616
 msgid "Hardware revision mismatch: "
-msgstr ""
+msgstr "Desajustament de revisió de hardware: "
 
-#: openplotterMaiana.py:632
+#: openplotterMaiana.py:619
 msgid "Error processing file: "
-msgstr ""
+msgstr "Error processant arxiu: "
 
-#: openplotterMaiana.py:636
-msgid "Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n\n"
+#: openplotterMaiana.py:623
+msgid ""
+"Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n"
+"\n"
 "Do you want to go ahead?"
-msgstr "El microprogramari del teu dispositiu MAIANA s'actualitzarà. Si us plau no el desconectis o manipulis durant l'actualització.\n\n"
+msgstr ""
+"El microprogramari del teu dispositiu MAIANA s'actualitzarà. Si us plau no el desconectis o manipulis durant l'actualització.\n"
+"\n"
 "Vols continuar?"
 
-#: openplotterMaiana.py:637
+#: openplotterMaiana.py:624
 msgid "Question"
 msgstr "Pregunta"
 
-#: openplotterMaiana.py:640
+#: openplotterMaiana.py:627
 msgid "Stopping Signal K server"
 msgstr "Aturant el servidor Signal K"
 
-#: openplotterMaiana.py:647
+#: openplotterMaiana.py:634
 msgid "Updating firmware, please wait... "
 msgstr "Actualitzant el microprogramari, si us plau espera... "
 
-#: openplotterMaiana.py:649
+#: openplotterMaiana.py:636
 msgid "Starting Signal K server"
 msgstr "Iniciant el servidor Signal K"
 
-#: openplotterMaianaRead.py:74
+#: openplotterMaianaRead.py:77
 msgid "There may be electromagnetic interference near the MAIANA AIS antenna"
 msgstr "Pot haver interferències electromagnètiques a prop de l'antena AIS de MAIANA"
 
-#: startup.py:29
-msgid "Starting MAIANA transponder..."
-msgstr ""
-
-#: startup.py:49
+#: startup.py:40
 msgid "Checking MAIANA transponder..."
 msgstr "Compravant el transponedor MAIANA..."
 
-#: startup.py:59
+#: startup.py:50
 msgid "There is no MAIANA device defined"
 msgstr "No hi ha cap dispositiu MAIANA definit"
 
-#: startup.py:63
+#: startup.py:54
 msgid "MAIANA device"
 msgstr "Dispositiu MAIANA"
 
-#: startup.py:95
-msgid "device settings OK"
-msgstr ""
+#: startup.py:81
+msgid "Signal K connection \"maianaCommand\" has errors. Reinstall \"MAIANA AIS transponder\" app."
+msgstr "La connexió de Signal K \"maianaCommand\" conté errors. Reinstal·la l'app \"transponedor MAIANA AIS\"."
 
-#: startup.py:99
-msgid "check device settings"
-msgstr ""
+#: startup.py:85
+msgid "maianaCommand connection OK"
+msgstr "connexió maianaCommand OK"
 
-#: startup.py:108
+#: startup.py:89
+msgid "Signal K connection \"maianaCommand\" does not exists. Reinstall \"MAIANA AIS transponder\" app."
+msgstr "La connexió de Signal K \"maianaCommand\" no existeix. Reinstal·la l'app \"transponedor MAIANA AIS\"."
+
+#: startup.py:112
+msgid "MAIANA Signal K connection has errors. Please try again."
+msgstr "La connexió MAIANA Signal K conté errors. Si us plau, torna-ho a provar."
+
+#: startup.py:117
+msgid "MAIANA connection OK"
+msgstr "Connexió MAIANA OK"
+
+#: startup.py:121
+msgid "MAIANA Signal K connection does not exists."
+msgstr "La connexió MAIANA Signal K no existeix."
+
+#: startup.py:132
 msgid "NMEA 0183 over TCP (10110) interface is disabled. Check Signal K server settings"
-msgstr ""
+msgstr "NMEA 0183 en la interfície TCP (10110) està deshabitat. Comprova la configuració del servidor Signal K"
 
-#: startup.py:119
+#: startup.py:136
+msgid "NMEA 0183 over TCP (10110) interface OK"
+msgstr "NMEA 0183 en l'interfície TCP (10110) està OK"
+
+#: startup.py:147
 msgid "Access to Signal K server validated"
 msgstr "Accés a servidor Signal K verificat"
 
-#: startup.py:127 startup.py:136
-msgid "running"
-msgstr ""
+#: startup.py:155 startup.py:165
+msgid "service running"
+msgstr "servei en execució"
 
-#: startup.py:131 startup.py:140
-msgid "not running"
-msgstr ""
-
+#: startup.py:159 startup.py:169
+msgid "service not running"
+msgstr "servei aturat"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2023-02-08 21:05+0100\n"
-"PO-Revision-Date: 2023-02-09 18:18\n"
+"POT-Creation-Date: 2024-05-20 11:49+0200\n"
+"PO-Revision-Date: 2024-06-13 19:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -13,433 +13,443 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: it\n"
 "X-Crowdin-File: openplotter-maiana.po\n"
 "X-Crowdin-File-ID: 33\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: actions.py:29
 msgid "Turn MAIANA TX on"
-msgstr ""
+msgstr "Abilita MAIANA TX"
 
 #: actions.py:30
 msgid "Turn MAIANA TX off"
-msgstr ""
+msgstr "Disabilita MAIANA TX"
 
 #: data/openplotter-maiana.desktop:3
 msgid "MAIANA AIS"
-msgstr ""
+msgstr "MAIANA AIS"
 
 #: data/openplotter-maiana.desktop:5
 msgid "openplotter-maiana"
-msgstr ""
+msgstr "openplotter-maiana"
 
 #: fwupdate.py:26
 msgid "Checking if unit is running"
-msgstr ""
+msgstr "Verifica se unità in movimento"
 
 #: fwupdate.py:42
 msgid "Unit is running, switching to DFU mode"
-msgstr ""
+msgstr "Unità in movimento, passa a modalità DFU"
 
 #: fwupdate.py:70
 msgid "Usage:"
-msgstr ""
+msgstr "Utilizzo:"
 
 #: fwupdate.py:82
 msgid "Unable to open serial port"
-msgstr ""
+msgstr "Impossibile aprire porta seriale"
 
 #: fwupdate.py:91
 msgid "Unable to open file"
-msgstr ""
+msgstr "Impossibile aprire il file"
 
 #: fwupdate.py:101
 msgid "File size:"
-msgstr ""
+msgstr "Dimensione file:"
 
 #: fwupdate.py:105
 msgid "Could not get unit into DFU mode"
-msgstr ""
+msgstr "Impossibile entrare in modalità DFU"
 
 #: fwupdate.py:109
 msgid "Unit is in DFU mode"
-msgstr ""
+msgstr "Unità in modalità DFU"
 
 #: fwupdate.py:113
 msgid "Unable to begin transfer, restart the unit and retry"
-msgstr ""
+msgstr "Impossibile avviare il trasferimento, riavviare l'unità e riprovare"
 
 #: fwupdate.py:117
 msgid "Starting transfer"
-msgstr ""
+msgstr "Inizializzazione trasferimento"
 
-#: fwupdate.py:136 maianaPostInstall.py:34 maianaPostInstall.py:43
-#: maianaPostInstall.py:49 maianaPreUninstall.py:33 maianaPreUninstall.py:39
+#: fwupdate.py:136 maianaPostInstall.py:57 maianaPostInstall.py:66
+#: maianaPostInstall.py:72 maianaPreUninstall.py:52 maianaPreUninstall.py:60
+#: maianaPreUninstall.py:66
 msgid "FAILED: "
-msgstr ""
+msgstr "FALLITO:"
 
-#: maianaPostInstall.py:30
-msgid "Installing python packages..."
-msgstr ""
+#: maianaPostInstall.py:32
+msgid "Adding connection to Signal K server for MAIANA commands..."
+msgstr "Aggiungi connessione al server Signal K per comandi MAIANA..."
 
-#: maianaPostInstall.py:33 maianaPostInstall.py:42 maianaPostInstall.py:48
-#: maianaPreUninstall.py:32 maianaPreUninstall.py:38
+#: maianaPostInstall.py:56 maianaPostInstall.py:65 maianaPostInstall.py:71
+#: maianaPreUninstall.py:51 maianaPreUninstall.py:59 maianaPreUninstall.py:65
 msgid "DONE"
-msgstr ""
+msgstr "FATTO"
 
-#: maianaPostInstall.py:36
-msgid "Checking access to Signal K server..."
-msgstr ""
+#: maianaPostInstall.py:59
+msgid "Creating services..."
+msgstr "Creazione servizi..."
 
-#: maianaPostInstall.py:45
+#: maianaPostInstall.py:68
 msgid "Setting version..."
-msgstr ""
+msgstr "Impostazione versione..."
 
-#: maianaPreUninstall.py:29
-msgid "Stopping OpenPlotter MAIANA service..."
-msgstr ""
+#: maianaPreUninstall.py:31
+msgid "Removing connection to Signal K server for MAIANA commands..."
+msgstr "Rimuovi connessione al server Signal K per comandi MAIANA..."
 
-#: maianaPreUninstall.py:35
+#: maianaPreUninstall.py:54
+msgid "Removing services..."
+msgstr "Rimozione servizi..."
+
+#: maianaPreUninstall.py:62
 msgid "Removing version..."
-msgstr ""
+msgstr "Rimozione versione..."
 
-#: openplotterMaiana.py:37
+#: openplotterMaiana.py:39
 msgid "MAIANA AIS transponder"
-msgstr ""
+msgstr "Transponder MAIANA AIS"
 
-#: openplotterMaiana.py:47
+#: openplotterMaiana.py:49
 msgid "Help"
-msgstr ""
+msgstr "Aiuto"
 
-#: openplotterMaiana.py:50 openplotterMaiana.py:69
+#: openplotterMaiana.py:52 openplotterMaiana.py:66
 msgid "Settings"
-msgstr ""
-
-#: openplotterMaiana.py:53
-msgid "Approve"
-msgstr ""
+msgstr "Impostazioni"
 
 #: openplotterMaiana.py:55
-msgid "Reconnect"
-msgstr ""
-
-#: openplotterMaiana.py:58
 msgid "MAIANA Signal K connection"
-msgstr ""
+msgstr "Connessione MAIANA Signal K"
 
-#: openplotterMaiana.py:62
+#: openplotterMaiana.py:59
 msgid "Connections"
-msgstr ""
+msgstr "Connessioni"
 
-#: openplotterMaiana.py:70
+#: openplotterMaiana.py:67
 msgid "Firmware"
-msgstr ""
+msgstr "Firmware"
 
-#: openplotterMaiana.py:143
+#: openplotterMaiana.py:133
 msgid "Reading MAIANA device settings..."
-msgstr ""
+msgstr "Lettura impostazioni dispositivo MAIANA..."
 
-#: openplotterMaiana.py:170
-msgid " Press \"Approve\" and then \"Refresh\"."
-msgstr ""
-
-#: openplotterMaiana.py:173
-msgid " Try \"Reconnect\"."
-msgstr ""
-
-#: openplotterMaiana.py:176
-msgid " Press \"Refresh\"."
-msgstr ""
-
-#: openplotterMaiana.py:222
+#: openplotterMaiana.py:193
 msgid "Select the Signal K connection for the MAIANA device"
-msgstr ""
+msgstr "Seleziona la connessione Signal K per il dispositico MAIANA"
 
-#: openplotterMaiana.py:250 openplotterMaiana.py:278 openplotterMaiana.py:281
-msgid "Cannot connect with the device, try again"
-msgstr ""
+#: openplotterMaiana.py:218 openplotterMaiana.py:245 openplotterMaiana.py:248
+msgid "Cannot connect with the device, try again by pressing \"Refresh\""
+msgstr "Impossibile connettersi al dispositivo, riprovare selezionando \"Ricarica\""
 
-#: openplotterMaiana.py:256 openplotterMaiana.py:259
+#: openplotterMaiana.py:223 openplotterMaiana.py:226
 msgid "The hardware version of your MAIANA device is too old"
-msgstr ""
+msgstr "La versione hardware del dispositivo MAIANA è troppo vecchia"
 
-#: openplotterMaiana.py:264 openplotterMaiana.py:267 openplotterMaiana.py:270
+#: openplotterMaiana.py:231 openplotterMaiana.py:234 openplotterMaiana.py:237
 msgid "The firmware version of your MAIANA device is too old"
-msgstr ""
+msgstr "La versione firmware del dispositivo MAIANA è troppo vecchia"
+
+#: openplotterMaiana.py:250
+msgid "Done"
+msgstr "Fatto"
+
+#: openplotterMaiana.py:253
+msgid "Hardware revision"
+msgstr "Revizione hardware"
+
+#: openplotterMaiana.py:258
+msgid "Firmware revision"
+msgstr "Revisione firmware"
+
+#: openplotterMaiana.py:262
+msgid "Type of MCU"
+msgstr "Tipo di MCU"
+
+#: openplotterMaiana.py:267
+msgid "Serial number"
+msgstr "Numero seriale"
+
+#: openplotterMaiana.py:272
+msgid "Transmitter hardware module"
+msgstr "Modulo hardware trasmettitore"
+
+#: openplotterMaiana.py:277
+msgid "present"
+msgstr "presente"
+
+#: openplotterMaiana.py:280
+msgid "not present"
+msgstr "non presente"
 
 #: openplotterMaiana.py:283
-msgid "Done"
-msgstr ""
-
-#: openplotterMaiana.py:286
-msgid "Hardware revision"
-msgstr ""
-
-#: openplotterMaiana.py:291
-msgid "Firmware revision"
-msgstr ""
-
-#: openplotterMaiana.py:295
-msgid "Type of MCU"
-msgstr ""
-
-#: openplotterMaiana.py:300
-msgid "Serial number"
-msgstr ""
-
-#: openplotterMaiana.py:305
-msgid "Transmitter hardware module"
-msgstr ""
-
-#: openplotterMaiana.py:310
-msgid "present"
-msgstr ""
-
-#: openplotterMaiana.py:313
-msgid "not present"
-msgstr ""
-
-#: openplotterMaiana.py:316
 msgid "Hardware TX switch"
-msgstr ""
+msgstr "Interruttore hardware TX"
 
-#: openplotterMaiana.py:321 openplotterMaiana.py:333
+#: openplotterMaiana.py:288 openplotterMaiana.py:300
 msgid "ON"
-msgstr ""
+msgstr "ON"
 
-#: openplotterMaiana.py:324 openplotterMaiana.py:338
+#: openplotterMaiana.py:291 openplotterMaiana.py:305
 msgid "OFF"
-msgstr ""
+msgstr "OFF"
 
-#: openplotterMaiana.py:327 openplotterMaiana.py:473
+#: openplotterMaiana.py:294 openplotterMaiana.py:461
 msgid "Software TX switch"
-msgstr ""
+msgstr "Interruttore software TX"
 
-#: openplotterMaiana.py:342
+#: openplotterMaiana.py:309
 msgid "Station data"
-msgstr ""
+msgstr "Dati stazione"
 
-#: openplotterMaiana.py:347
+#: openplotterMaiana.py:314
 msgid "provided"
-msgstr ""
+msgstr "fornito"
 
-#: openplotterMaiana.py:350
+#: openplotterMaiana.py:317
 msgid "not provided"
-msgstr ""
+msgstr "non fornito"
 
-#: openplotterMaiana.py:353
+#: openplotterMaiana.py:320
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
-#: openplotterMaiana.py:358
+#: openplotterMaiana.py:325
 msgid "transmitting"
-msgstr ""
+msgstr "trasmissione"
+
+#: openplotterMaiana.py:328
+msgid "not transmitting"
+msgstr "non in trasmissione"
+
+#: openplotterMaiana.py:331
+msgid "Channel A latest transmitted message"
+msgstr "Ultimo messaggio trasmesso canale A"
+
+#: openplotterMaiana.py:337 openplotterMaiana.py:350
+msgid "Type"
+msgstr "Tipo"
+
+#: openplotterMaiana.py:341 openplotterMaiana.py:353
+msgid "Time"
+msgstr "Tempo"
+
+#: openplotterMaiana.py:344
+msgid "Channel B latest transmitted message"
+msgstr "Ultimo messaggio trasmesso canale B"
+
+#: openplotterMaiana.py:356
+msgid "Channel A noise floor"
+msgstr "Rumore di fondo canale A"
 
 #: openplotterMaiana.py:361
-msgid "not transmitting"
-msgstr ""
-
-#: openplotterMaiana.py:364
-msgid "Channel A latest transmitted message"
-msgstr ""
-
-#: openplotterMaiana.py:370 openplotterMaiana.py:383
-msgid "Type"
-msgstr ""
-
-#: openplotterMaiana.py:374 openplotterMaiana.py:386
-msgid "Time"
-msgstr ""
-
-#: openplotterMaiana.py:377
-msgid "Channel B latest transmitted message"
-msgstr ""
-
-#: openplotterMaiana.py:389
-msgid "Channel A noise floor"
-msgstr ""
-
-#: openplotterMaiana.py:394
 msgid "Channel B noise floor"
-msgstr ""
+msgstr "Rumore di fondo canale B"
+
+#: openplotterMaiana.py:421
+msgid "Restarting Signal K server... "
+msgstr "Riavvio Signal K server"
+
+#: openplotterMaiana.py:424
+msgid "Signal K server restarted"
+msgstr "Signal K server riavviato"
+
+#: openplotterMaiana.py:439
+msgid "MMSI"
+msgstr "MMSI"
+
+#: openplotterMaiana.py:441
+msgid "Vessel name"
+msgstr "Nome nave"
+
+#: openplotterMaiana.py:443
+msgid "Call sign"
+msgstr "Identificativo di chiamata"
+
+#: openplotterMaiana.py:445
+msgid "Vessel type"
+msgstr "Tipo nave"
+
+#: openplotterMaiana.py:447
+msgid "LOA"
+msgstr "LOA"
+
+#: openplotterMaiana.py:449
+msgid "Beam"
+msgstr "Baglio massimo"
 
 #: openplotterMaiana.py:451
-msgid "MMSI"
-msgstr ""
+msgid "Port Offset"
+msgstr "Offset sinistra"
 
 #: openplotterMaiana.py:453
-msgid "Vessel name"
-msgstr ""
+msgid "Bow Offset"
+msgstr "Offset prua"
 
 #: openplotterMaiana.py:455
-msgid "Call sign"
-msgstr ""
+msgid "Units: meters"
+msgstr "Unità: metri"
 
-#: openplotterMaiana.py:457
-msgid "Vessel type"
-msgstr ""
+#: openplotterMaiana.py:458 openplotterMaiana.py:574
+msgid "Refresh"
+msgstr "Ricarica"
 
-#: openplotterMaiana.py:459
-msgid "LOA"
-msgstr ""
-
-#: openplotterMaiana.py:461
-msgid "Beam"
-msgstr ""
-
-#: openplotterMaiana.py:463
-msgid "Port Offset"
-msgstr ""
-
-#: openplotterMaiana.py:465
-msgid "Bow Offset"
-msgstr ""
+#: openplotterMaiana.py:464
+msgid "Detect noise"
+msgstr "Rileva rumore"
 
 #: openplotterMaiana.py:467
-msgid "Units: meters"
-msgstr ""
-
-#: openplotterMaiana.py:470 openplotterMaiana.py:587
-msgid "Refresh"
-msgstr ""
-
-#: openplotterMaiana.py:476
-msgid "Detect noise"
-msgstr ""
-
-#: openplotterMaiana.py:479
 msgid "Save station data"
-msgstr ""
+msgstr "Salva dati stazione"
 
-#: openplotterMaiana.py:526
+#: openplotterMaiana.py:513
 msgid "Invalid MMSI"
-msgstr ""
+msgstr "MMSI non valido"
 
-#: openplotterMaiana.py:532
+#: openplotterMaiana.py:519
 msgid "Invalid vessel name"
-msgstr ""
+msgstr "Nome nave non valido"
 
-#: openplotterMaiana.py:537
+#: openplotterMaiana.py:524
 msgid "Invalid call sign"
-msgstr ""
+msgstr "Identificativo di chiamata non valido"
 
-#: openplotterMaiana.py:546
+#: openplotterMaiana.py:533
 msgid "Invalid vessel type"
-msgstr ""
+msgstr "Tipo nave non valido"
 
-#: openplotterMaiana.py:551
+#: openplotterMaiana.py:538
 msgid "Invalid LOA"
-msgstr ""
+msgstr "LOA invalido"
 
-#: openplotterMaiana.py:556
+#: openplotterMaiana.py:543
 msgid "Invalid Beam"
-msgstr ""
+msgstr "Baglio massimo non valido"
 
-#: openplotterMaiana.py:561
+#: openplotterMaiana.py:548
 msgid "Invalid bow offset"
-msgstr ""
+msgstr "Offest prua non valido"
 
-#: openplotterMaiana.py:566
+#: openplotterMaiana.py:553
 msgid "Invalid port offset"
-msgstr ""
+msgstr "Offest sinistra non valido"
 
-#: openplotterMaiana.py:591
+#: openplotterMaiana.py:578
 msgid "Download firmware"
-msgstr ""
+msgstr "Download firmware"
 
-#: openplotterMaiana.py:594
+#: openplotterMaiana.py:581
 msgid "Update firmware"
-msgstr ""
+msgstr "Update firmware"
 
-#: openplotterMaiana.py:611
+#: openplotterMaiana.py:598
 msgid "Choose a file"
-msgstr ""
+msgstr "Scegli un file"
 
-#: openplotterMaiana.py:611
+#: openplotterMaiana.py:598
 msgid "bin files"
-msgstr ""
+msgstr "file bin"
 
-#: openplotterMaiana.py:611
+#: openplotterMaiana.py:598
 msgid "All files"
-msgstr ""
+msgstr "Tutti i file"
 
-#: openplotterMaiana.py:622
+#: openplotterMaiana.py:609
 msgid "MCU type mismatch: "
-msgstr ""
+msgstr "Incompatibilità tipo MCU:"
 
-#: openplotterMaiana.py:629
+#: openplotterMaiana.py:616
 msgid "Hardware revision mismatch: "
-msgstr ""
+msgstr "Incompatibilità revisione hardware:"
 
-#: openplotterMaiana.py:632
+#: openplotterMaiana.py:619
 msgid "Error processing file: "
-msgstr ""
+msgstr "Errore nel processo del file: "
+
+#: openplotterMaiana.py:623
+msgid ""
+"Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n"
+"\n"
+"Do you want to go ahead?"
+msgstr "Il firmware del tuo dispositivo Maiana verrà aggiornato, non disconnetterlo o manometterlo durante l'aggiornamento."
+
+#: openplotterMaiana.py:624
+msgid "Question"
+msgstr "Domanda"
+
+#: openplotterMaiana.py:627
+msgid "Stopping Signal K server"
+msgstr "Arresto server Signal K"
+
+#: openplotterMaiana.py:634
+msgid "Updating firmware, please wait... "
+msgstr "Aggiornamento firmware, attendere..."
 
 #: openplotterMaiana.py:636
-msgid "Your MAIANA device firmware will be updated, please do not disconnect or tamper with it during the update.\n\n"
-"Do you want to go ahead?"
-msgstr ""
-
-#: openplotterMaiana.py:637
-msgid "Question"
-msgstr ""
-
-#: openplotterMaiana.py:640
-msgid "Stopping Signal K server"
-msgstr ""
-
-#: openplotterMaiana.py:647
-msgid "Updating firmware, please wait... "
-msgstr ""
-
-#: openplotterMaiana.py:649
 msgid "Starting Signal K server"
-msgstr ""
+msgstr "Avvio server Signal K"
 
-#: openplotterMaianaRead.py:74
+#: openplotterMaianaRead.py:77
 msgid "There may be electromagnetic interference near the MAIANA AIS antenna"
-msgstr ""
+msgstr "Potrebbero esserci interferenze elettromagnetiche vicino all'antenna MAIANA AIS"
 
-#: startup.py:29
-msgid "Starting MAIANA transponder..."
-msgstr ""
-
-#: startup.py:49
+#: startup.py:40
 msgid "Checking MAIANA transponder..."
-msgstr ""
+msgstr "Verifica transponder MAIANA..."
 
-#: startup.py:59
+#: startup.py:50
 msgid "There is no MAIANA device defined"
-msgstr ""
+msgstr "Nessun dispositivo MAIANA definito"
 
-#: startup.py:63
+#: startup.py:54
 msgid "MAIANA device"
-msgstr ""
+msgstr "Dispositivo MAIANA"
 
-#: startup.py:95
-msgid "device settings OK"
-msgstr ""
+#: startup.py:81
+msgid "Signal K connection \"maianaCommand\" has errors. Reinstall \"MAIANA AIS transponder\" app."
+msgstr "La connessione Signal K \"maianaConnect\" ha degli errori. Reinstalla l'app \"MAIANA AIS transponder\"."
 
-#: startup.py:99
-msgid "check device settings"
-msgstr ""
+#: startup.py:85
+msgid "maianaCommand connection OK"
+msgstr "connessione maianaCommand OK"
 
-#: startup.py:108
+#: startup.py:89
+msgid "Signal K connection \"maianaCommand\" does not exists. Reinstall \"MAIANA AIS transponder\" app."
+msgstr "La connessione Signal K \"maianaCommand\" non esiste. Reinstalla l'app \"MAIANA AIS transponder\"."
+
+#: startup.py:112
+msgid "MAIANA Signal K connection has errors. Please try again."
+msgstr "La connessione MAIANA Signal K ha degli errori. Riprovare."
+
+#: startup.py:117
+msgid "MAIANA connection OK"
+msgstr "Connessione MAIANA OK"
+
+#: startup.py:121
+msgid "MAIANA Signal K connection does not exists."
+msgstr "La connessione MAIANA Signal K non esiste."
+
+#: startup.py:132
 msgid "NMEA 0183 over TCP (10110) interface is disabled. Check Signal K server settings"
-msgstr ""
+msgstr "Interfaccia NMEA 0183 su TCP (10110) disabilitata. Verifica le impostazioni di Signal K"
 
-#: startup.py:119
+#: startup.py:136
+msgid "NMEA 0183 over TCP (10110) interface OK"
+msgstr "Interfaccia NMEA 0183 su TCP (10110) OK"
+
+#: startup.py:147
 msgid "Access to Signal K server validated"
-msgstr ""
+msgstr "Accesso a Signal K server validato"
 
-#: startup.py:127 startup.py:136
-msgid "running"
-msgstr ""
+#: startup.py:155 startup.py:165
+msgid "service running"
+msgstr "servizio in esecuzione"
 
-#: startup.py:131 startup.py:140
-msgid "not running"
-msgstr ""
-
+#: startup.py:159 startup.py:169
+msgid "service not running"
+msgstr "servizio non in esecuzione"
