@@ -10,6 +10,6 @@ X-Python3-Version: >= 3.2
 Package: openplotter-maiana
 Architecture: all
 Multi-Arch: foreign
-Depends: ${misc:Depends}, ${python3:Depends}, openplotter-settings (>=3.2.1), openplotter-signalk-installer (>=2.4.2), python3-serial
+Depends: ${misc:Depends}, ${python3:Depends}, openplotter-settings, openplotter-signalk-installer, python3-serial
 Description: OpenPlotter integration of the MAIANA open source AIS transponder
  OpenPlotter integration of the MAIANA open source AIS transponder

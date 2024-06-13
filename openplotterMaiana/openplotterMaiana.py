@@ -15,12 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import wx, os, webbrowser, subprocess, time, datetime, ujson, serial, requests, re, sys
+import wx, os, webbrowser, subprocess, time, datetime, ujson, requests, re, sys, socket
 import wx.richtext as rt
 from openplotterSettings import conf
 from openplotterSettings import language
 from openplotterSettings import platform
-from openplotterSignalkInstaller import connections
 from .version import version
 
 class MyFrame(wx.Frame):
@@ -33,6 +32,9 @@ class MyFrame(wx.Frame):
 		self.language = language.Language(self.currentdir,'openplotter-maiana',self.currentLanguage)
 		if self.conf.get('GENERAL', 'debug') == 'yes': self.debug = True
 		else: self.debug = False
+		self.UDP_IP = "localhost"
+		self.UDP_PORT = 40440
+		self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 		wx.Frame.__init__(self, None, title=_('MAIANA AIS transponder')+' '+version, size=(800,444))
 		self.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
@@ -49,11 +51,6 @@ class MyFrame(wx.Frame):
 		if not self.platform.isInstalled('openplotter-doc'): self.toolbar1.EnableTool(101,False)
 		toolSettings = self.toolbar1.AddTool(102, _('Settings'), wx.Bitmap(self.currentdir+"/data/settings.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolSettings, toolSettings)
-		self.toolbar1.AddSeparator()
-		aproveSK = self.toolbar1.AddTool(105, _('Approve'), wx.Bitmap(self.currentdir+"/data/sk.png"))
-		self.Bind(wx.EVT_TOOL, self.onAproveSK, aproveSK)
-		connectionSK = self.toolbar1.AddTool(106, _('Reconnect'), wx.Bitmap(self.currentdir+"/data/sk.png"))
-		self.Bind(wx.EVT_TOOL, self.onConnectionSK, connectionSK)
 		self.toolbar1.AddSeparator()
 		self.connInit = _('MAIANA Signal K connection')
 		self.SKconn = wx.ComboBox(self.toolbar1, 103, self.connInit, choices=[], size=(250,-1), style=wx.CB_DROPDOWN)
@@ -119,24 +116,17 @@ class MyFrame(wx.Frame):
 		subprocess.call(['pkill', '-f', 'openplotter-settings'])
 		subprocess.Popen('openplotter-settings')
 
-	def onAproveSK(self,e):
-		if self.platform.skPort: 
-			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/security/access/requests'
-			webbrowser.open(url, new=2)
-
-	def onConnectionSK(self,e):
-		self.conf.set('MAIANA', 'href', '')
-		self.conf.set('MAIANA', 'token', '')
-		self.onRead()
-
 	def onShowSK(self, event):
 		if self.platform.skPort: 
 			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/serverConfiguration/connections/-'
 			webbrowser.open(url, new=2)
 
 	def restartRead(self):
-		subprocess.call(['pkill','-f','openplotter-maiana-read'])
-		subprocess.Popen('openplotter-maiana-read')
+		subprocess.call([self.platform.admin, 'python3', self.currentdir+'/service.py', 'enable'])
+		time.sleep(1)
+
+	def stopRead(self):
+		subprocess.call([self.platform.admin, 'python3', self.currentdir+'/service.py', 'disable'])
 		time.sleep(1)
 
 	def onRead(self):
@@ -152,7 +142,6 @@ class MyFrame(wx.Frame):
 		self.logger.Clear()
 		self.logger2.Clear()
 		self.device = self.conf.get('MAIANA', 'device')
-		self.toolbar1.EnableTool(105,False)
 		self.toolbar2.EnableTool(202,False)
 		self.toolbar3.EnableTool(302,False)
 		self.toolbar3.EnableTool(303,False)
@@ -162,24 +151,6 @@ class MyFrame(wx.Frame):
 		availableIDs = []
 		selected = ''
 		self.tx = False
-
-		skConnections = connections.Connections('MAIANA')
-		result = skConnections.checkConnection()
-		if result[0] == 'pending':
-			self.toolbar1.EnableTool(105,True)
-			self.ShowStatusBarYELLOW(result[1]+_(' Press "Approve" and then "Refresh".'))
-			return
-		elif result[0] == 'error':
-			self.ShowStatusBarRED(result[1]+_(' Try "Reconnect".'))
-			return
-		elif result[0] == 'repeat':
-			self.ShowStatusBarYELLOW(result[1]+_(' Press "Refresh".'))
-			return
-		elif result[0] == 'permissions':
-			self.ShowStatusBarYELLOW(result[1])
-			return
-		elif result[0] == 'approved':
-			self.ShowStatusBarGREEN(result[1])
 
 		try:
 			setting_file = self.platform.skDir+'/settings.json'
@@ -223,19 +194,16 @@ class MyFrame(wx.Frame):
 
 		if deviceOld != self.device:
 			if self.device: self.restartRead()
-			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+			else: self.stopRead()
 		else:
-			if self.device:
-				test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
-				if not 'openplotter-maiana-read' in test: self.restartRead()
-			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+			if self.device: self.restartRead()
+			else: self.stopRead()
 
 		if self.device:
-			ser = serial.Serial(self.device, 38400)
-			ser.write('sys?\r\n'.encode("utf-8"))
-			ser.write('station?\r\n'.encode("utf-8"))
-			ser.write('tx?\r\n'.encode("utf-8"))
-			time.sleep(0.5)
+			self.sock.sendto(b'sys?\r\n',(self.UDP_IP,self.UDP_PORT))
+			self.sock.sendto(b'station?\r\n',(self.UDP_IP,self.UDP_PORT))
+			self.sock.sendto(b'tx?\r\n',(self.UDP_IP,self.UDP_PORT))
+			time.sleep(1)
 			try:
 				resp = requests.get(self.platform.http+'localhost:'+self.platform.skPort+'/signalk/v1/api/vessels/self/MAIANA/', verify=False)
 				data = ujson.loads(resp.content)
@@ -246,9 +214,8 @@ class MyFrame(wx.Frame):
 					ts = datetime.datetime.utcnow().timestamp()
 					timestamp = data['hardwareRevision']['timestamp']
 					ts2 = time.mktime(datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%fZ").timetuple())
-					if ts - ts2 > 3: 
-						self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
-						print('#############################')
+					if ts - ts2 > 5: 
+						self.ShowStatusBarRED(_('Cannot connect with the device, try again by pressing "Refresh"'))
 						return
 					hardwareRevision = data['hardwareRevision']['value']
 					hardwareRevision = hardwareRevision.split('.')
@@ -275,10 +242,10 @@ class MyFrame(wx.Frame):
 						self.toolbar2.EnableTool(202,True)
 				except Exception as e:
 					if self.debug: print(str(e))
-					self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
+					self.ShowStatusBarRED(_('Cannot connect with the device, try again by pressing "Refresh"'))
 					return
 			else: 
-				self.ShowStatusBarRED(_('Cannot connect with the device, try again'))
+				self.ShowStatusBarRED(_('Cannot connect with the device, try again by pressing "Refresh"'))
 				return
 			self.ShowStatusBarGREEN(_('Done'))
 
@@ -414,33 +381,54 @@ class MyFrame(wx.Frame):
 	def onSKconn(self, event):
 		deviceOld = self.conf.get('MAIANA', 'device')
 		selectedID = self.SKconn.GetValue()
+		resetSK = False
+		setting_file = self.platform.skDir+'/settings.json'
+		data = {}
 		try:
-			setting_file = self.platform.skDir+'/settings.json'
 			with open(setting_file) as data_file:
 				data = ujson.load(data_file)
 		except: data = {}
+
 		if 'pipedProviders' in data:
-			data = data['pipedProviders']
-		else: data = []
-		for i in data:
-			skID = ''
-			device = ''
-			try:
-				skID = i['id']
-				dataSubOptions = i['pipeElements'][0]['options']['subOptions']
-				device = dataSubOptions['device']
-				if selectedID == skID:
-					self.device = device
-					self.conf.set('MAIANA', 'device', self.device)
-			except: pass
+			for idx, i in enumerate(data['pipedProviders']):
+				skID = ''
+				device = ''
+				try:
+					skID = i['id']
+					dataSubOptions = i['pipeElements'][0]['options']['subOptions']
+					device = dataSubOptions['device']
+					if selectedID == skID:
+						self.device = device
+						self.conf.set('MAIANA', 'device', self.device)
+						if 'toStdout' in dataSubOptions:
+							if not "maianaCommand" in dataSubOptions['toStdout']:
+								data['pipedProviders'][idx]['pipeElements'][0]['options']['subOptions']['toStdout'] = ["maianaCommand"]
+								resetSK = True
+						else:
+							data['pipedProviders'][idx]['pipeElements'][0]['options']['subOptions']['toStdout'] = ["maianaCommand"]
+							resetSK = True
+				except: pass
+
+		if resetSK:
+			if data:
+				data2 = ujson.dumps(data, indent=4, sort_keys=True)
+				file = open(setting_file, 'w')
+				file.write(data2)
+				file.close()
+				seconds = 12
+				subprocess.call([self.platform.admin, 'python3', self.currentdir+'/service.py', 'sk', 'restart'])
+				for i in range(seconds, 0, -1):
+					self.ShowStatusBarYELLOW(_('Restarting Signal K server... ')+str(i))
+					time.sleep(1)
+					wx.GetApp().Yield()
+				self.ShowStatusBarGREEN(_('Signal K server restarted'))
+
 		if deviceOld != self.device:
 			if self.device: self.restartRead()
-			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+			else: self.stopRead()
 		else:
-			if self.device:
-				test = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
-				if not 'openplotter-maiana-read' in test: self.restartRead()
-			else: subprocess.call(['pkill','-f','openplotter-maiana-read'])
+			if self.device: self.restartRead()
+			else: self.stopRead()
 
 		self.onRead()
 
@@ -449,21 +437,21 @@ class MyFrame(wx.Frame):
 		self.logger2.SetMargins((10,10))
 
 		mmsiLabel = wx.StaticText(self.settings, label=_('MMSI'))
-		self.mmsi = wx.TextCtrl(self.settings)
+		self.mmsi = wx.TextCtrl(self.settings,size=(-1, 25))
 		vesselNameLabel = wx.StaticText(self.settings, label=_('Vessel name'))
-		self.vesselName = wx.TextCtrl(self.settings)
+		self.vesselName = wx.TextCtrl(self.settings,size=(-1, 25))
 		callSignLabel = wx.StaticText(self.settings, label=_('Call sign'))
-		self.callSign = wx.TextCtrl(self.settings)
+		self.callSign = wx.TextCtrl(self.settings,size=(-1, 25))
 		vesselTypeLabel = wx.StaticText(self.settings, label=_('Vessel type'))
-		self.vesselType = wx.ComboBox(self.settings, 701, choices=['Fishing','Diving','Sailing','Pleasure craft'], style=wx.CB_DROPDOWN)
+		self.vesselType = wx.ComboBox(self.settings, 701, choices=['Fishing','Diving','Sailing','Pleasure craft'],style=wx.CB_DROPDOWN,size=(-1, 25))
 		LOAlabel = wx.StaticText(self.settings, label=_('LOA'))
-		self.LOA = wx.TextCtrl(self.settings)
+		self.LOA = wx.TextCtrl(self.settings,size=(-1, 25))
 		beamLabel = wx.StaticText(self.settings, label=_('Beam'))
-		self.beam = wx.TextCtrl(self.settings)
+		self.beam = wx.TextCtrl(self.settings,size=(-1, 25))
 		portOffsetLabel = wx.StaticText(self.settings, label=_('Port Offset'))
-		self.portOffset = wx.TextCtrl(self.settings)
+		self.portOffset = wx.TextCtrl(self.settings,size=(-1, 25))
 		bowOffsetLabel = wx.StaticText(self.settings, label=_('Bow Offset'))
-		self.bowOffset = wx.TextCtrl(self.settings)
+		self.bowOffset = wx.TextCtrl(self.settings,size=(-1, 25))
 		unitsLabel = wx.StaticText(self.settings, label=_('Units: meters'))
 
 		self.toolbar3 = wx.ToolBar(self.settings, style=wx.TB_TEXT)
@@ -491,8 +479,7 @@ class MyFrame(wx.Frame):
 		hbox2.Add(self.LOA, 0, wx.ALL | wx.EXPAND, 2)
 		hbox2.Add(portOffsetLabel, 0, wx.ALL | wx.EXPAND, 2)
 		hbox2.Add(self.portOffset, 0, wx.ALL | wx.EXPAND, 2)
-		hbox2.AddSpacer(10)
-		hbox2.Add(unitsLabel, 0, wx.ALL | wx.EXPAND, 5)
+		hbox2.Add(unitsLabel, 0, wx.ALL | wx.EXPAND, 2)
 
 		hbox3 = wx.BoxSizer(wx.VERTICAL)
 		hbox3.Add(callSignLabel, 0, wx.ALL | wx.EXPAND, 2)
@@ -505,9 +492,9 @@ class MyFrame(wx.Frame):
 		hbox3.Add(self.bowOffset, 0, wx.ALL | wx.EXPAND, 2)
 
 		hbox4 = wx.BoxSizer(wx.HORIZONTAL)
-		hbox4.Add(hbox1, 2, wx.ALL | wx.EXPAND, 5)
-		hbox4.Add(hbox2, 1, wx.ALL | wx.EXPAND, 5)
-		hbox4.Add(hbox3, 1, wx.ALL | wx.EXPAND, 5)
+		hbox4.Add(hbox1, 2, wx.RIGHT | wx.EXPAND, 10)
+		hbox4.Add(hbox2, 1, wx.RIGHT | wx.EXPAND, 10)
+		hbox4.Add(hbox3, 1, wx.RIGHT | wx.EXPAND, 5)
 
 		vbox = wx.BoxSizer(wx.VERTICAL)
 		vbox.Add(self.toolbar3, 0)
@@ -567,14 +554,14 @@ class MyFrame(wx.Frame):
 			return
 
 		command = 'station '+str(mmsi)+','+str(vesselName)+','+str(callSign)+','+str(vesselType)+','+str(LOA)+','+str(beam)+','+str(portOffset)+','+str(bowOffset)+'\r\n'
-		ser = serial.Serial(self.device, 38400)
-		ser.write(command.encode("utf-8"))
+		self.sock.sendto(bytes(command,'utf-8'),(self.UDP_IP,self.UDP_PORT))
+
 		self.onRead()
 
 	def OnToolTX(self, event):
-		ser = serial.Serial(self.device, 38400)
-		if self.tx: ser.write('tx off\r\n'.encode("utf-8"))
-		else: ser.write('tx on\r\n'.encode("utf-8"))
+
+		if self.tx: self.sock.sendto(b'tx off\r\n',(self.UDP_IP,self.UDP_PORT))
+		else: self.sock.sendto(b'tx on\r\n',(self.UDP_IP,self.UDP_PORT))
 		self.onRead()
 
 	def OnToolRefresh(self, event):
