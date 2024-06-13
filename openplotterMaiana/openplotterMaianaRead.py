@@ -74,7 +74,7 @@ def main():
 												if noiseValue > 64:
 													now = datetime.datetime.utcnow()
 													now = now.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
-													SKdata.update({"notifications.MAIANA.channel"+data3[1]+".noiseFloor":{"message":_("There may be electromagnetic interference near the MAIANA AIS antenna"),"state":"alert","method": ["visual", "sound"],"timestamp":now}})
+													SKdata.update({"notifications.MAIANA.channel"+data3[1]+".noiseFloor":{"message":_("There may be electromagnetic interference near the MAIANA AIS antenna"),"state":"alert","method": ["visual"]}})
 												else:
 													SKdata.update({"notifications.MAIANA.channel"+data3[1]+".noiseFloor":None})
 										except: pass
