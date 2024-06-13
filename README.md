@@ -14,7 +14,7 @@ Install MAIANA AIS transponder from openplotter-settings app.
 
 Install openplotter-maiana dependencies:
 
-`sudo apt install openplotter-signalk-installer python3-serial`
+`sudo apt install openplotter-settings openplotter-signalk-installer python3-serial`
 
 Clone the repository:
 
